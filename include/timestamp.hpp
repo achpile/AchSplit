@@ -24,7 +24,7 @@ namespace ach {
 
 		void calc();
 		void sprint(char *buf, size_t size);
-		void sprint2(char *buf, size_t size);
+		void sprint2(char *buf, size_t size, const char *positive = "");
 	};
 }
 

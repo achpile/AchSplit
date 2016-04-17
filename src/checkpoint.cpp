@@ -25,13 +25,13 @@ ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
 	caption->setCharacterSize(14);
-	caption->setColor(sf::Color::Blue);
+	caption->setColor(sf::Color(128, 128, 255));
 	caption->setPosition(10, 60 + index * 25);
 	caption->setString(label);
 
 	differ = new sf::Text();
 	differ->setFont(*resources->fonts.timer);
-	differ->setCharacterSize(14);
+	differ->setCharacterSize(16);
 	differ->setPosition(10, 60 + index * 25);
 
 	timer = new sf::Text();
@@ -143,7 +143,7 @@ void ach::Checkpoint::setBest(long _best) {
 		diff.clock = _best - best;
 
 	diff.calc();
-	diff.sprint2(cap, sizeof(cap));
+	diff.sprint2(cap, sizeof(cap), "+");
 
 
 	if (best > _best || !best) {

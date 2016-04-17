@@ -60,23 +60,23 @@ void ach::TimeStamp::sprint(char *buf, size_t size) {
      * sprint2
 
 ***********************************************************************/
-void ach::TimeStamp::sprint2(char *buf, size_t size) {
+void ach::TimeStamp::sprint2(char *buf, size_t size, const char *positive) {
 	if (hour)
 		snprintf(buf, size, "%s%ld:%02ld:%02ld.%ld",
-		                    (clock < 0) ? "-" : "",
+		                    (clock < 0) ? "-" : positive,
 		                    hour,
 		                    min,
 		                    sec,
 		                    usec / 100);
 	else if (min)
 		snprintf(buf, size, "%s%ld:%02ld.%ld",
-		                    (clock < 0) ? "-" : "",
+		                    (clock < 0) ? "-" : positive,
 		                    min,
 		                    sec,
 		                    usec / 100);
 	else
 		snprintf(buf, size, "%s%ld.%ld",
-		                    (clock < 0) ? "-" : "",
+		                    (clock < 0) ? "-" : positive,
 		                    sec,
 		                    usec / 100);
 }

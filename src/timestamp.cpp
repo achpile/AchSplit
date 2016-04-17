@@ -52,3 +52,31 @@ void ach::TimeStamp::sprint(char *buf, size_t size) {
 	                    sec,
 	                    usec);
 }
+
+
+
+/***********************************************************************
+     * TimeStamp
+     * sprint2
+
+***********************************************************************/
+void ach::TimeStamp::sprint2(char *buf, size_t size) {
+	if (hour)
+		snprintf(buf, size, "%s%ld:%02ld:%02ld.%ld",
+		                    (clock < 0) ? "-" : "",
+		                    hour,
+		                    min,
+		                    sec,
+		                    usec / 100);
+	else if (min)
+		snprintf(buf, size, "%s%ld:%02ld.%ld",
+		                    (clock < 0) ? "-" : "",
+		                    min,
+		                    sec,
+		                    usec / 100);
+	else
+		snprintf(buf, size, "%s%ld.%ld",
+		                    (clock < 0) ? "-" : "",
+		                    sec,
+		                    usec / 100);
+}

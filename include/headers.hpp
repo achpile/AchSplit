@@ -27,6 +27,7 @@
 #include "resources.hpp"
 #include "timestamp.hpp"
 #include "timer.hpp"
+#include "checkpoint.hpp"
 #include "stopwatch.hpp"
 #include "externs.hpp"
 

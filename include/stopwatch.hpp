@@ -15,6 +15,8 @@ namespace ach {
 		sf::Clock        *clock;
 		ach::Timer       *timer;
 
+		std::vector<ach::Checkpoint*> checkpoints;
+
 		long lastClock;
 		bool running;
 

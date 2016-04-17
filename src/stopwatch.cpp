@@ -23,6 +23,9 @@ ach::StopWatch::StopWatch() {
 
 	createWindow();
 
+	for (int i = 0; i < 10; i++)
+		checkpoints.push_back(new ach::Checkpoint(i));
+
 	running   = true;
 	lastClock = clock->getElapsedTime().asMilliseconds();
 }
@@ -35,6 +38,8 @@ ach::StopWatch::StopWatch() {
 
 ***********************************************************************/
 ach::StopWatch::~StopWatch() {
+	deleteList(checkpoints);
+
 	delete clock;
 	//delete settings;
 	delete resources;
@@ -69,6 +74,9 @@ void ach::StopWatch::update() {
 
 ***********************************************************************/
 void ach::StopWatch::render() {
+	for (unsigned int i = 0; i < checkpoints.size(); i++)
+		checkpoints[i]->update();
+
 	timer->update();
 }
 

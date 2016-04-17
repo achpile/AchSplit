@@ -23,7 +23,8 @@
      * Window
 
 ***********************************************************************/
-#define WIDTH  250
-#define HEIGHT 500
+#define WIDTH   250
+#define HEIGHT  500
+#define VISIBLE 15
 
 #endif

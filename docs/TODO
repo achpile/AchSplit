@@ -29,9 +29,11 @@
 			<todo done="yes" collapse="no"><title>Right click to reset method</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>Support big lists</title>
+			<todo done="no" collapse="no"><title>Checkpoint.setIndex method</title></todo>
+			<todo done="no" collapse="no"><title>Checkpoint visible property</title></todo>
+			<todo done="no" collapse="no"><title>Calculate indexes method</title></todo>
+			<todo done="no" collapse="no"><title>Show current and next three ones</title></todo>
 			<todo done="no" collapse="no"><title>Show last checkpoint</title></todo>
-			<todo done="no" collapse="no"><title>Show current and next one</title></todo>
-			<todo done="no" collapse="no"><title>Checkpoint position as render() argument</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>Sound indication</title></todo>
 	</todo>

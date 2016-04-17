@@ -199,7 +199,13 @@ void ach::StopWatch::processEvent(sf::Event event) {
 				checkpoint();
 			else if (event.mouseButton.button == sf::Mouse::Right)
 				reset();
+			break;
 
+		case sf::Event::KeyReleased:
+			if (event.key.code == sf::Keyboard::Space)
+				checkpoint();
+			else if (event.key.code == sf::Keyboard::R)
+				reset();
 			break;
 
 		default:
@@ -255,12 +261,17 @@ void ach::StopWatch::reset() {
 	current            = -1;
 
 	for (unsigned int i = 0; i < checkpoints.size(); i++) {
-		checkpoints[i]->setBest(checkpoints[i]->best);
+		if (best.clock) {
+			checkpoints[i]->setBest(checkpoints[i]->best);
 
-		if (i == 0)
-			checkpoints[i]->setClock(checkpoints[i]->best);
-		else
-			checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
+			if (i == 0)
+				checkpoints[i]->setClock(checkpoints[i]->best);
+			else
+				checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
+		} else {
+			checkpoints[i]->setBest(0);
+			checkpoints[i]->setClock(0);
+		}
 	}
 
 	updateBest();

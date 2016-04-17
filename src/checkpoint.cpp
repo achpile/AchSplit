@@ -139,7 +139,7 @@ void ach::Checkpoint::setIndex(int index, bool _highlighted) {
 void ach::Checkpoint::setBest(long _best) {
 	char cap[32];
 
-	if (best)
+	if (best && _best)
 		diff.clock = _best - best;
 
 	diff.calc();

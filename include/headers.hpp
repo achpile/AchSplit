@@ -23,6 +23,11 @@
 #include <jansson.h>
 
 
+#ifdef __unix__
+#include <signal.h>
+#endif
+
+
 #include "defines.hpp"
 #include "misc.hpp"
 #include "resources.hpp"
@@ -30,6 +35,7 @@
 #include "timer.hpp"
 #include "checkpoint.hpp"
 #include "stopwatch.hpp"
+#include "arch.hpp"
 #include "externs.hpp"
 
 #endif

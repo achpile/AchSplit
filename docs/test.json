@@ -1,82 +1,108 @@
 {
-	"game":"Test game",
-	"goal":"Test my speedrun tool",
-	"offset": -2000,
-	"checkpoints": [
-		{
-			"name":"Level 1"
-		},
-		{
-			"name":"Level 2"
-		},
-		{
-			"name":"Level 3"
-		},
-		{
-			"name":"Level 4"
-		},
-		{
-			"name":"Level 5"
-		},
-		{
-			"name":"Level 6"
-		},
-		{
-			"name":"Level 7"
-		},
-		{
-			"name":"Level 8"
-		},
-		{
-			"name":"Level 9"
-		},
-		{
-			"name":"Level 10"
-		},
-		{
-			"name":"Level 11"
-		},
-		{
-			"name":"Level 12"
-		},
-		{
-			"name":"Level 13"
-		},
-		{
-			"name":"Level 14"
-		},
-		{
-			"name":"Level 15"
-		},
-		{
-			"name":"Level 16"
-		},
-		{
-			"name":"Level 17"
-		},
-		{
-			"name":"Level 18"
-		},
-		{
-			"name":"Level 19"
-		},
-		{
-			"name":"Level 20"
-		},
-		{
-			"name":"Level 21"
-		},
-		{
-			"name":"Level 22"
-		},
-		{
-			"name":"Level 23"
-		},
-		{
-			"name":"Level 24"
-		},
-		{
-			"name":"Level 25"
-		}
-	]
+      "game": "Test game",
+      "goal": "Test my speedrun tool",
+      "offset": -2000,
+      "checkpoints": [
+            {
+                  "name": "Level 1",
+                  "best": 309
+            },
+            {
+                  "name": "Level 2",
+                  "best": 26
+            },
+            {
+                  "name": "Level 3",
+                  "best": 25
+            },
+            {
+                  "name": "Level 4",
+                  "best": 24
+            },
+            {
+                  "name": "Level 5",
+                  "best": 24
+            },
+            {
+                  "name": "Level 6",
+                  "best": 21
+            },
+            {
+                  "name": "Level 7",
+                  "best": 24
+            },
+            {
+                  "name": "Level 8",
+                  "best": 24
+            },
+            {
+                  "name": "Level 9",
+                  "best": 24
+            },
+            {
+                  "name": "Level 10",
+                  "best": 22
+            },
+            {
+                  "name": "Level 11",
+                  "best": 24
+            },
+            {
+                  "name": "Level 12",
+                  "best": 24
+            },
+            {
+                  "name": "Level 13",
+                  "best": 25
+            },
+            {
+                  "name": "Level 14",
+                  "best": 27
+            },
+            {
+                  "name": "Level 15",
+                  "best": 25
+            },
+            {
+                  "name": "Level 16",
+                  "best": 22
+            },
+            {
+                  "name": "Level 17",
+                  "best": 26
+            },
+            {
+                  "name": "Level 18",
+                  "best": 26
+            },
+            {
+                  "name": "Level 19",
+                  "best": 24
+            },
+            {
+                  "name": "Level 20",
+                  "best": 22
+            },
+            {
+                  "name": "Level 21",
+                  "best": 26
+            },
+            {
+                  "name": "Level 22",
+                  "best": 22
+            },
+            {
+                  "name": "Level 23",
+                  "best": 27
+            },
+            {
+                  "name": "Level 24",
+                  "best": 27
+            },
+            {
+                  "name": "Level 25",
+                  "best": 369
+            }
+      ],
+      "best": 4569
 }

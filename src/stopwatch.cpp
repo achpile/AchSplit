@@ -215,6 +215,9 @@ void ach::StopWatch::processEvent(sf::Event event) {
 
 ***********************************************************************/
 void ach::StopWatch::checkpoint() {
+	if (timer->clock.clock <= 0 && current >= 0)
+		return;
+
 	if (current == -1)
 		timer->active = true;
 	else if (current < (int)checkpoints.size()) {

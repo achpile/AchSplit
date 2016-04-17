@@ -12,14 +12,16 @@
 
 namespace ach {
 	struct Checkpoint {
-		sf::Text       *caption;
-		sf::Text       *timer;
-		sf::Text       *differ;
-		ach::TimeStamp  clock;
-		ach::TimeStamp  diff;
+		sf::Text           *caption;
+		sf::Text           *timer;
+		sf::Text           *differ;
+		sf::RectangleShape *highlight;
+		ach::TimeStamp      clock;
+		ach::TimeStamp      diff;
 
-		long            best;
-		bool            visible;
+		long                best;
+		bool                visible;
+		bool                highlighted;
 
 
 		 Checkpoint(int index, long _best, const char *label);
@@ -30,7 +32,7 @@ namespace ach {
 
 		void setClock(long _clock);
 		void setBest(long _best);
-		void setIndex(int index);
+		void setIndex(int index, bool _highlighted);
 	};
 }
 

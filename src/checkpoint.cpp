@@ -19,6 +19,9 @@ ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
 	best    = _best;
 	visible = false;
 
+	highlight = new sf::RectangleShape(sf::Vector2f(WIDTH - 10, 25));
+	highlight->setFillColor(sf::Color(50, 50, 50));
+
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
 	caption->setCharacterSize(14);
@@ -78,6 +81,9 @@ void ach::Checkpoint::update() {
 
 ***********************************************************************/
 void ach::Checkpoint::render() {
+	if (highlighted)
+		app->draw(*highlight);
+
 	app->draw(*caption);
 
 	if (clock.clock)
@@ -111,14 +117,16 @@ void ach::Checkpoint::setClock(long _clock) {
      * setIndex
 
 ***********************************************************************/
-void ach::Checkpoint::setIndex(int index) {
+void ach::Checkpoint::setIndex(int index, bool _highlighted) {
 	int yPos = 60 + index * 25;
 
-	visible = true;
+	visible     = true;
+	highlighted = _highlighted;
 
 	timer->setPosition(timer->getPosition().x, yPos);
 	differ->setPosition(differ->getPosition().x, yPos);
 	caption->setPosition(caption->getPosition().x, yPos);
+	highlight->setPosition(5, yPos - 2);
 }
 
 

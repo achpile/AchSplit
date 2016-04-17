@@ -176,9 +176,9 @@ void ach::StopWatch::updateCheckpoints() {
 
 
 	for (int i = from; i < to; i++)
-		checkpoints[i]->setIndex(index++);
+		checkpoints[i]->setIndex(index++, i == current);
 
-	checkpoints.back()->setIndex(index);
+	checkpoints.back()->setIndex(index, current == (int)checkpoints.size() - 1);
 }
 
 

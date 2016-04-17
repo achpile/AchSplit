@@ -36,7 +36,7 @@
 			<todo done="yes" collapse="no"><title>Show last checkpoint</title></todo>
 			<todo done="yes" collapse="no"><title>Show separator if there's skipped items</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>Highlight current segment</title></todo>
+		<todo done="yes" collapse="no"><title>Highlight current segment</title></todo>
 		<todo done="no" collapse="no"><title>Signal catcher</title>
 			<todo done="no" collapse="no"><title>USR1 to checkpoint()</title></todo>
 			<todo done="no" collapse="no"><title>USR2 to reset()</title></todo>

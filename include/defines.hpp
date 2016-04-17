@@ -1,7 +1,7 @@
 /***********************************************************************
      * File       : defines.hpp
-     * Created    : Oct 09, 2014
-     * Copyright  : (C) 2014 Achpile
+     * Created    : Apr 17, 2016
+     * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 

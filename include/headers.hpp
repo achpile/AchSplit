@@ -1,7 +1,7 @@
 /***********************************************************************
      * File       : headers.hpp
-     * Created    : Mar 08, 2015
-     * Copyright  : (C) 2014 Achpile
+     * Created    : Apr 17, 2016
+     * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 

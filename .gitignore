@@ -1,0 +1,10 @@
+# Compiled Object files
+*.o
+
+# Compiled project
+stopwatch
+
+# CMake
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake

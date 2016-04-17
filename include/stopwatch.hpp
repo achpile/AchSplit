@@ -12,9 +12,10 @@
 
 namespace ach {
 	struct StopWatch {
-		sf::Clock        *clock;
-		ach::Timer       *timer;
-		ach::TimeStamp    best;
+		sf::Clock          *clock;
+		sf::RectangleShape *separator;
+		ach::Timer         *timer;
+		ach::TimeStamp      best;
 
 		sf::Text         *caption;
 		sf::Text         *goal;
@@ -27,6 +28,7 @@ namespace ach {
 		long offset;
 		int  current;
 		bool running;
+		bool separated;
 
 
 		 StopWatch();
@@ -40,6 +42,7 @@ namespace ach {
 		long calculate(int index);
 		long getSegmentTime(int index);
 		void updateBest();
+		void updateCheckpoints();
 		void reset();
 
 		void load();

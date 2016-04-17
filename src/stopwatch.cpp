@@ -20,6 +20,10 @@ ach::StopWatch::StopWatch() {
 	resources = new ach::Resources();
 	timer     = new ach::Timer();
 
+	separator = new sf::RectangleShape(sf::Vector2f(WIDTH - 20, 1));
+	separator->setFillColor(sf::Color::White);
+	separator->setPosition(10, HEIGHT - 93);
+
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
 	caption->setCharacterSize(14);
@@ -61,6 +65,7 @@ ach::StopWatch::~StopWatch() {
 	deleteList(checkpoints);
 
 	delete clock;
+	delete separator;
 	delete timer;
 	delete resources;
 	delete app;
@@ -98,6 +103,9 @@ void ach::StopWatch::render() {
 	app->draw(*goal);
 	app->draw(*bestCaption);
 
+	if (separated)
+		app->draw(*separator);
+
 	if (best.clock)
 		app->draw(*bestText);
 
@@ -130,6 +138,47 @@ void ach::StopWatch::processEvents() {
 ***********************************************************************/
 void ach::StopWatch::stop() {
 	running = false;
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * updateCheckpoints
+
+***********************************************************************/
+void ach::StopWatch::updateCheckpoints() {
+	int index = 0;
+	int from;
+	int to;
+
+
+	for (unsigned int i = 0; i < checkpoints.size(); i++)
+		checkpoints[i]->visible = false;
+
+	if (checkpoints.size() <= VISIBLE) {
+		from      = 0;
+		to        = checkpoints.size() - 1;
+		separated = false;
+	} else {
+		from      = current - 7;
+		separated = true;
+
+		if (from < 0) {
+			from = 0;
+		} else if (from + VISIBLE >= (int)checkpoints.size()) {
+			from      = checkpoints.size() - VISIBLE;
+			separated = false;
+		}
+
+		to = from + VISIBLE - 1;
+	}
+
+
+	for (int i = from; i < to; i++)
+		checkpoints[i]->setIndex(index++);
+
+	checkpoints.back()->setIndex(index);
 }
 
 
@@ -171,7 +220,8 @@ void ach::StopWatch::checkpoint() {
 	else if (current < (int)checkpoints.size()) {
 		checkpoints[current]->setClock(timer->clock.clock);
 		checkpoints[current]->setBest(getSegmentTime(current));
-	}
+	} else
+		return;
 
 	current++;
 
@@ -185,6 +235,8 @@ void ach::StopWatch::checkpoint() {
 
 		save();
 	}
+
+	updateCheckpoints();
 }
 
 
@@ -209,6 +261,7 @@ void ach::StopWatch::reset() {
 	}
 
 	updateBest();
+	updateCheckpoints();
 }
 
 

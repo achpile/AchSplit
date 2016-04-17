@@ -16,7 +16,8 @@
 
 ***********************************************************************/
 ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
-	best = _best;
+	best    = _best;
+	visible = false;
 
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
@@ -66,7 +67,7 @@ ach::Checkpoint::~Checkpoint() {
 
 ***********************************************************************/
 void ach::Checkpoint::update() {
-	render();
+	if (visible) render();
 }
 
 
@@ -101,6 +102,23 @@ void ach::Checkpoint::setClock(long _clock) {
 	clock.sprint2(cap, sizeof(cap));
 	timer->setString(cap);
 	timer->setPosition(WIDTH - 7 * strlen(cap) - 10, timer->getPosition().y);
+}
+
+
+
+/***********************************************************************
+     * Checkpoint
+     * setIndex
+
+***********************************************************************/
+void ach::Checkpoint::setIndex(int index) {
+	int yPos = 60 + index * 25;
+
+	visible = true;
+
+	timer->setPosition(timer->getPosition().x, yPos);
+	differ->setPosition(differ->getPosition().x, yPos);
+	caption->setPosition(caption->getPosition().x, yPos);
 }
 
 

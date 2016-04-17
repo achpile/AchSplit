@@ -19,6 +19,7 @@ namespace ach {
 		ach::TimeStamp  diff;
 
 		long            best;
+		bool            visible;
 
 
 		 Checkpoint(int index, long _best, const char *label);
@@ -29,6 +30,7 @@ namespace ach {
 
 		void setClock(long _clock);
 		void setBest(long _best);
+		void setIndex(int index);
 	};
 }
 

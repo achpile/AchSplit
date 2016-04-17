@@ -30,6 +30,17 @@ ach::StopWatch::StopWatch() {
 	goal->setCharacterSize(12);
 	goal->setColor(sf::Color::White);
 
+	bestCaption = new sf::Text();
+	bestCaption->setFont(*resources->fonts.caption);
+	bestCaption->setCharacterSize(20);
+	bestCaption->setColor(sf::Color::White);
+	bestCaption->setPosition(10, HEIGHT - 65);
+	bestCaption->setString("Best time");
+
+	bestText = new sf::Text();
+	bestText->setFont(*resources->fonts.timer);
+	bestText->setCharacterSize(20);
+	bestText->setColor(sf::Color::White);
 
 	createWindow();
 	load();
@@ -85,6 +96,8 @@ void ach::StopWatch::update() {
 void ach::StopWatch::render() {
 	app->draw(*caption);
 	app->draw(*goal);
+	app->draw(*bestCaption);
+	app->draw(*bestText);
 
 	for (unsigned int i = 0; i < checkpoints.size(); i++)
 		checkpoints[i]->update();
@@ -160,8 +173,14 @@ void ach::StopWatch::checkpoint() {
 
 	current++;
 
-	if (current == (int)checkpoints.size())
+	if (current == (int)checkpoints.size()) {
 		timer->active = false;
+
+		if (timer->clock.clock < best.clock) {
+			best.clock = timer->clock.clock;
+			updateBest();
+		}
+	}
 }
 
 
@@ -184,6 +203,24 @@ void ach::StopWatch::reset() {
 		else
 			checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
 	}
+
+	updateBest();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * updateBest
+
+***********************************************************************/
+void ach::StopWatch::updateBest() {
+	char cap[32];
+	best.calc();
+	best.sprint2(cap, sizeof(cap));
+
+	bestText->setString(cap);
+	bestText->setPosition(WIDTH - bestText->getGlobalBounds().width - 10, HEIGHT - 65);
 }
 
 
@@ -230,9 +267,10 @@ void ach::StopWatch::load() {
 	config = json_load_file("docs/test.json", 0, &error);
 	checks = json_object_get(config, "checkpoints");
 
-	caption->setString(json_string_value(json_object_get(config, "game")));
-	goal->setString(json_string_value(json_object_get(config, "goal")));
-	offset = json_integer_value(json_object_get(config, "offset"));
+	caption->setString(json_string_value (json_object_get(config, "game"  )));
+	goal->setString   (json_string_value (json_object_get(config, "goal"  )));
+	offset     =       json_integer_value(json_object_get(config, "offset"));
+	best.clock =       json_integer_value(json_object_get(config, "best"  ));
 
 	json_array_foreach(checks, index, item)
 		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));

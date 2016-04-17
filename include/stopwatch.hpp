@@ -14,9 +14,12 @@ namespace ach {
 	struct StopWatch {
 		sf::Clock        *clock;
 		ach::Timer       *timer;
+		ach::TimeStamp    best;
 
 		sf::Text         *caption;
 		sf::Text         *goal;
+		sf::Text         *bestCaption;
+		sf::Text         *bestText;
 
 		std::vector<ach::Checkpoint*> checkpoints;
 
@@ -36,6 +39,7 @@ namespace ach {
 		void checkpoint();
 		long calculate(int index);
 		long getSegmentTime(int index);
+		void updateBest();
 		void reset();
 		void load();
 

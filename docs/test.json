@@ -2,6 +2,7 @@
 	"game":"Test game",
 	"goal":"Test my speedrun tool",
 	"offset": -2000,
+	"best": 60000,
 	"checkpoints": [
 		{
 			"best": 5000,

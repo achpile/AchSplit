@@ -6,20 +6,20 @@
 		<todo done="yes" collapse="no"><title>Display game name</title></todo>
 		<todo done="yes" collapse="no"><title>Display goal</title></todo>
 		<todo done="yes" collapse="no"><title>Calculating segments</title></todo>
-		<todo done="yes" collapse="no"><title>Load JSON files</title>
+		<todo done="yes" collapse="yes"><title>Load JSON files</title>
 			<todo done="yes" collapse="no"><title>Load checkpoint list</title></todo>
 			<todo done="yes" collapse="no"><title>Time offset</title></todo>
 			<todo done="yes" collapse="no"><title>Game name</title></todo>
 			<todo done="yes" collapse="no"><title>Goal</title></todo>
 			<todo done="yes" collapse="no"><title>Best time for segment</title></todo>
-			<todo done="no" collapse="no"><title>Best time</title></todo>
+			<todo done="yes" collapse="no"><title>Best time</title></todo>
 		</todo>
 		<todo done="yes" collapse="yes"><title>Columns</title>
 			<todo done="yes" collapse="no"><title>Checkpoint name</title></todo>
 			<todo done="yes" collapse="no"><title>Time (current for finished, best for unfinished)</title></todo>
 			<todo done="yes" collapse="no"><title>+/- best time for segment</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>Display best time</title></todo>
+		<todo done="yes" collapse="no"><title>Display best time</title></todo>
 		<todo done="no" collapse="no"><title>Save JSON</title></todo>
 		<todo done="yes" collapse="no"><title>Store best segments</title></todo>
 		<todo done="yes" collapse="no"><title>Calculating PB</title></todo>

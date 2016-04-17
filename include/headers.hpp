@@ -10,6 +10,7 @@
 #define __HEADERS
 
 
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <sys/stat.h>
 #include <stdio.h>

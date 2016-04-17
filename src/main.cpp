@@ -14,7 +14,7 @@
      * Global variables
 
 ***********************************************************************/
-unsigned long              frameClock;
+long                       frameClock;
 ach::StopWatch            *sw;
 ach::Resources            *resources;
 sf::RenderWindow          *app;

@@ -1,5 +1,5 @@
 <todo>
-	<todo done="no" collapse="no"><title>1.0-rc1</title>
+	<todo done="yes" collapse="yes"><title>1.0-rc1</title>
 		<todo done="yes" collapse="no"><title>Checkpoint method (store time and go to next)</title></todo>
 		<todo done="yes" collapse="no"><title>Start timer only after click (-1 means stopped)</title></todo>
 		<todo done="yes" collapse="no"><title>Stop timer after last checkpoint</title></todo>
@@ -37,10 +37,16 @@
 			<todo done="yes" collapse="no"><title>Show separator if there's skipped items</title></todo>
 		</todo>
 		<todo done="yes" collapse="no"><title>Highlight current segment</title></todo>
-		<todo done="yes" collapse="yes"><title>Signal catcher</title>
+		<todo done="yes" collapse="yes"><title>Unix signal catcher</title>
 			<todo done="yes" collapse="no"><title>USR1 to checkpoint()</title></todo>
 			<todo done="yes" collapse="no"><title>USR2 to reset()</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>Sound indication</title></todo>
+		<todo done="yes" collapse="yes"><title>Sound indication</title>
+			<todo done="yes" collapse="no"><title>Loading sounds</title></todo>
+			<todo done="yes" collapse="no"><title>Playing sounds</title></todo>
+		</todo>
+	</todo>
+	<todo done="no" collapse="no"><title>1.0-rc2</title>
+		<todo done="no" collapse="no"><title>Fix 1.0-rc1 bugs</title></todo>
 	</todo>
 </todo>

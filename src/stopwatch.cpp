@@ -342,8 +342,9 @@ void ach::StopWatch::load() {
 
 	caption->setString(json_string_value (json_object_get(config, "game"  )));
 	goal->setString   (json_string_value (json_object_get(config, "goal"  )));
-	offset     =       json_integer_value(json_object_get(config, "offset"));
-	best.clock =       json_integer_value(json_object_get(config, "best"  ));
+	offset      =      json_integer_value(json_object_get(config, "offset"));
+	best.clock  =      json_integer_value(json_object_get(config, "best"  ));
+	timer->beep =      json_is_true      (json_object_get(config, "beep"  ));
 
 	json_array_foreach(checks, index, item)
 		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));

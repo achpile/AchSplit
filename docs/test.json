@@ -1,7 +1,8 @@
 {
 	"game":"Test game",
 	"goal":"Test my speedrun tool",
-	"offset": -2000,
+	"offset": -5000,
+	"beep": true,
 	"checkpoints": [
 		{
 			"name":"Level 1"

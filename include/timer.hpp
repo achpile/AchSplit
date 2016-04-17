@@ -16,6 +16,7 @@ namespace ach {
 		ach::TimeStamp  clock;
 
 		bool active;
+		bool beep;
 
 
 		 Timer();
@@ -25,6 +26,7 @@ namespace ach {
 		void render();
 		void updateText();
 		void init();
+		void checkBeep();
 	};
 }
 

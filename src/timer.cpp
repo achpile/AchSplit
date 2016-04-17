@@ -44,8 +44,10 @@ ach::Timer::~Timer() {
 
 ***********************************************************************/
 void ach::Timer::update() {
-	if (active)
+	if (active) {
+		checkBeep();
 		clock.clock += frameClock;
+	}
 
 	clock.calc();
 
@@ -77,4 +79,24 @@ void ach::Timer::updateText() {
 ***********************************************************************/
 void ach::Timer::render() {
 	app->draw(*text);
+}
+
+
+
+/***********************************************************************
+     * Timer
+     * checkBeep
+
+***********************************************************************/
+void ach::Timer::checkBeep() {
+	if (clock.clock > 0 || !beep)
+		return;
+
+	int newClock = ceil((float)(clock.clock + frameClock) / 1000.f) - 1;
+	int oldClock = ceil((float)(clock.clock             ) / 1000.f) - 1;
+
+	if (newClock != oldClock && newClock > -4) {
+		if (newClock) resources->sfx.beep1->play();
+		else          resources->sfx.beep2->play();
+	}
 }

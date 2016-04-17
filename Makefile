@@ -24,6 +24,7 @@ LDFLAGS     = -static-libstdc++ \
               -static-libgcc    \
               -lsfml-graphics   \
               -lsfml-window     \
+              -lsfml-audio      \
               -lsfml-system     \
               -ljansson         \
               -lm

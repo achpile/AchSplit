@@ -9,7 +9,7 @@
 #ifndef __EXTERNS
 #define __EXTERNS
 
-extern unsigned long              frameClock;
+extern long                       frameClock;
 extern ach::StopWatch            *sw;
 extern ach::Resources            *resources;
 extern sf::RenderWindow          *app;

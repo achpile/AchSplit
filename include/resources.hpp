@@ -17,11 +17,20 @@ namespace ach {
 			sf::Font *caption;
 		} fonts;
 
+		struct {
+			sf::SoundBuffer *beepBuf1;
+			sf::SoundBuffer *beepBuf2;
+
+			sf::Sound       *beep1;
+			sf::Sound       *beep2;
+		} sfx;
+
 
 		 Resources();
 		~Resources();
 
 		void loadFont(sf::Font **font, const char *filename);
+		void loadSound(sf::SoundBuffer **buf, sf::Sound **snd, const char *filename);
 	};
 }
 

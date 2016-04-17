@@ -15,6 +15,8 @@ namespace ach {
 		sf::Text       *text;
 		ach::TimeStamp  clock;
 
+		bool active;
+
 
 		 Timer();
 		~Timer();

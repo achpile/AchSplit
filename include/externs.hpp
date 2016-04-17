@@ -1,7 +1,7 @@
 /***********************************************************************
      * File       : externs.hpp
-     * Created    : Mar 08, 2015
-     * Copyright  : (C) 2014 Achpile
+     * Created    : Apr 17, 2016
+     * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 
@@ -11,7 +11,6 @@
 
 extern unsigned long              frameClock;
 extern ach::StopWatch            *sw;
-//extern ach::Settings             *settings;
 extern ach::Resources            *resources;
 extern sf::RenderWindow          *app;
 

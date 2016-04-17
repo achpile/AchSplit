@@ -1,23 +1,32 @@
 <todo>
 	<todo done="no" collapse="no"><title>1.0-rc1</title>
-		<todo done="no" collapse="no"><title>Checkpoint method (store time and go to next)</title></todo>
+		<todo done="yes" collapse="no"><title>Checkpoint method (store time and go to next)</title></todo>
 		<todo done="no" collapse="no"><title>Reset method</title></todo>
 		<todo done="no" collapse="no"><title>Mouse</title>
-			<todo done="no" collapse="no"><title>Left click to checkpoint method</title></todo>
+			<todo done="yes" collapse="no"><title>Left click to checkpoint method</title></todo>
 			<todo done="no" collapse="no"><title>Right click to reset method</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>Start timer only after click (-1 means stopped)</title></todo>
-		<todo done="no" collapse="no"><title>Stop timer after last checkpoint</title></todo>
+		<todo done="yes" collapse="no"><title>Start timer only after click (-1 means stopped)</title></todo>
+		<todo done="yes" collapse="no"><title>Stop timer after last checkpoint</title></todo>
 		<todo done="no" collapse="no"><title>Load JSON files</title>
 			<todo done="no" collapse="no"><title>Load checkpoint list</title></todo>
+			<todo done="no" collapse="no"><title>Time offset</title></todo>
+			<todo done="no" collapse="no"><title>Game name</title></todo>
+			<todo done="no" collapse="no"><title>Goal</title></todo>
+		</todo>
+		<todo done="no" collapse="no"><title>Display game name</title></todo>
+		<todo done="no" collapse="no"><title>Display goal</title></todo>
+		<todo done="no" collapse="no"><title>Columns</title>
+			<todo done="no" collapse="no"><title>Time (current for finished, best for unfinished)</title></todo>
+			<todo done="no" collapse="no"><title>+/- best time for segment</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>Store best segments</title></todo>
 		<todo done="no" collapse="no"><title>Calculating PB</title></todo>
-		<todo done="no" collapse="no"><title>Show difference in runs</title></todo>
 		<todo done="no" collapse="no"><title>Support big lists</title>
 			<todo done="no" collapse="no"><title>Show last checkpoint</title></todo>
 			<todo done="no" collapse="no"><title>Show current and next one</title></todo>
 			<todo done="no" collapse="no"><title>Checkpoint position as render() argument</title></todo>
 		</todo>
+		<todo done="no" collapse="no"><title>Sound indication</title></todo>
 	</todo>
 </todo>

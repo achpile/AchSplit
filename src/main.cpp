@@ -16,7 +16,6 @@
 ***********************************************************************/
 unsigned long              frameClock;
 ach::StopWatch            *sw;
-//ach::Settings             *settings;
 ach::Resources            *resources;
 sf::RenderWindow          *app;
 

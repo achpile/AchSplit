@@ -17,7 +17,6 @@
 ***********************************************************************/
 ach::StopWatch::StopWatch() {
 	clock     = new sf::Clock;
-//	settings  = new ach::Settings();
 	resources = new ach::Resources();
 	timer     = new ach::Timer();
 
@@ -26,6 +25,7 @@ ach::StopWatch::StopWatch() {
 	for (int i = 0; i < 10; i++)
 		checkpoints.push_back(new ach::Checkpoint(i));
 
+	current   = -1;
 	running   = true;
 	lastClock = clock->getElapsedTime().asMilliseconds();
 }
@@ -41,7 +41,6 @@ ach::StopWatch::~StopWatch() {
 	deleteList(checkpoints);
 
 	delete clock;
-	//delete settings;
 	delete resources;
 	delete app;
 }
@@ -118,7 +117,40 @@ void ach::StopWatch::processEvent(sf::Event event) {
 			stop();
 			break;
 
+		case sf::Event::MouseButtonReleased:
+			checkpoint();
+			break;
+
 		default:
 			break;
 	}
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * checkpoint
+
+***********************************************************************/
+void ach::StopWatch::checkpoint() {
+	if (current == -1)
+		timer->active = true;
+	else if (current < (int)checkpoints.size())
+		checkpoints[current]->setClock(timer->clock.clock);
+
+	current++;
+
+	if (current == (int)checkpoints.size())
+		timer->active = false;
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * reset
+
+***********************************************************************/
+void ach::StopWatch::reset() {
 }

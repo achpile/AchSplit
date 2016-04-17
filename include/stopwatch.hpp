@@ -18,6 +18,7 @@ namespace ach {
 		std::vector<ach::Checkpoint*> checkpoints;
 
 		long lastClock;
+		int  current;
 		bool running;
 
 
@@ -27,6 +28,9 @@ namespace ach {
 		void update();
 		void render();
 		void stop();
+
+		void checkpoint();
+		void reset();
 
 		void processEvents();
 		void processEvent(sf::Event event);

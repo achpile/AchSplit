@@ -73,3 +73,20 @@ void ach::Checkpoint::render() {
 	app->draw(*caption);
 	app->draw(*timer);
 }
+
+
+
+/***********************************************************************
+     * Checkpoint
+     * setClock
+
+***********************************************************************/
+void ach::Checkpoint::setClock(long _clock) {
+	char cap[32];
+
+	clock.clock = _clock;
+	clock.calc();
+	clock.sprint2(cap, sizeof(cap));
+	timer->setString(cap);
+	timer->setPosition(WIDTH - 7 * strlen(cap) - 10, timer->getPosition().y);
+}

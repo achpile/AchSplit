@@ -22,6 +22,8 @@ namespace ach {
 
 		void update();
 		void render();
+
+		void setClock(long _clock);
 	};
 }
 

@@ -21,6 +21,7 @@ ach::Timer::Timer() {
 	text->setCharacterSize(32);
 	text->setColor(sf::Color::Green);
 
+	active      = false;
 	clock.clock = -5000;
 }
 
@@ -43,7 +44,9 @@ ach::Timer::~Timer() {
 
 ***********************************************************************/
 void ach::Timer::update() {
-	clock.clock += frameClock;
+	if (active)
+		clock.clock += frameClock;
+
 	clock.calc();
 
 	updateText();

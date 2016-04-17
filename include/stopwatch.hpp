@@ -33,6 +33,8 @@ namespace ach {
 		void stop();
 
 		void checkpoint();
+		long calculate(int index);
+		long getSegmentTime(int index);
 		void reset();
 		void load();
 

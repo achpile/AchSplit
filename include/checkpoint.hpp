@@ -16,8 +16,10 @@ namespace ach {
 		sf::Text       *timer;
 		ach::TimeStamp  clock;
 
+		long            best;
 
-		 Checkpoint(int index, const char *label);
+
+		 Checkpoint(int index, long _best, const char *label);
 		~Checkpoint();
 
 		void update();

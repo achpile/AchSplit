@@ -4,33 +4,43 @@
 	"offset": -2000,
 	"checkpoints": [
 		{
+			"best": 5000,
 			"name":"Level 1"
 		},
 		{
+			"best": 5000,
 			"name":"Level 2"
 		},
 		{
+			"best": 5000,
 			"name":"Level 3"
 		},
 		{
+			"best": 5000,
 			"name":"Level 4"
 		},
 		{
+			"best": 5000,
 			"name":"Level 5"
 		},
 		{
+			"best": 5000,
 			"name":"Level 6"
 		},
 		{
+			"best": 5000,
 			"name":"Level 7"
 		},
 		{
+			"best": 5000,
 			"name":"Level 8"
 		},
 		{
+			"best": 5000,
 			"name":"Level 9"
 		},
 		{
+			"best": 5000,
 			"name":"Level 10"
 		}
 	]

@@ -15,7 +15,9 @@
      * constructor
 
 ***********************************************************************/
-ach::Checkpoint::Checkpoint(int index, const char *label) {
+ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
+	best = _best;
+
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
 	caption->setCharacterSize(14);

@@ -149,8 +149,10 @@ void ach::StopWatch::processEvent(sf::Event event) {
 void ach::StopWatch::checkpoint() {
 	if (current == -1)
 		timer->active = true;
-	else if (current < (int)checkpoints.size())
+	else if (current < (int)checkpoints.size()) {
 		checkpoints[current]->setClock(timer->clock.clock);
+		//printf("%ld\n", calculate(current));
+	}
 
 	current++;
 
@@ -166,6 +168,33 @@ void ach::StopWatch::checkpoint() {
 
 ***********************************************************************/
 void ach::StopWatch::reset() {
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * calculate
+
+***********************************************************************/
+long ach::StopWatch::calculate(int index) {
+	long st = getSegmentTime(index);
+
+	return (st - checkpoints[index]->best);
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * getSegmentTime
+
+***********************************************************************/
+long ach::StopWatch::getSegmentTime(int index) {
+	if (index == 0)
+		return checkpoints[index]->clock.clock;
+	else
+		return checkpoints[index]->clock.clock - checkpoints[index - 1]->clock.clock;
 }
 
 
@@ -190,10 +219,16 @@ void ach::StopWatch::load() {
 	timer->clock.clock = json_integer_value(json_object_get(config, "offset"));
 
 	json_array_foreach(checks, index, item)
-		checkpoints.push_back(new ach::Checkpoint(index, json_string_value(json_object_get(item, "name"))));
+		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));
 
 	json_decref(config);
 
 	caption->setPosition((WIDTH - caption->getGlobalBounds().width) / 2, 10);
 	goal->setPosition((WIDTH - goal->getGlobalBounds().width) / 2, 30);
+
+	for (unsigned int i = 0; i < checkpoints.size(); i++)
+		if (i == 0)
+			checkpoints[i]->setClock(checkpoints[i]->best);
+		else
+			checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
 }

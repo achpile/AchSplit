@@ -131,7 +131,11 @@ void ach::StopWatch::processEvent(sf::Event event) {
 			break;
 
 		case sf::Event::MouseButtonReleased:
-			checkpoint();
+			if (event.mouseButton.button == sf::Mouse::Left)
+				checkpoint();
+			else if (event.mouseButton.button == sf::Mouse::Right)
+				reset();
+
 			break;
 
 		default:
@@ -151,7 +155,7 @@ void ach::StopWatch::checkpoint() {
 		timer->active = true;
 	else if (current < (int)checkpoints.size()) {
 		checkpoints[current]->setClock(timer->clock.clock);
-		//printf("%ld\n", calculate(current));
+		checkpoints[current]->setBest(getSegmentTime(current));
 	}
 
 	current++;
@@ -168,6 +172,18 @@ void ach::StopWatch::checkpoint() {
 
 ***********************************************************************/
 void ach::StopWatch::reset() {
+	timer->clock.clock = offset;
+	timer->active      = false;
+	current            = -1;
+
+	for (unsigned int i = 0; i < checkpoints.size(); i++) {
+		checkpoints[i]->setBest(checkpoints[i]->best);
+
+		if (i == 0)
+			checkpoints[i]->setClock(checkpoints[i]->best);
+		else
+			checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
+	}
 }
 
 
@@ -216,7 +232,7 @@ void ach::StopWatch::load() {
 
 	caption->setString(json_string_value(json_object_get(config, "game")));
 	goal->setString(json_string_value(json_object_get(config, "goal")));
-	timer->clock.clock = json_integer_value(json_object_get(config, "offset"));
+	offset = json_integer_value(json_object_get(config, "offset"));
 
 	json_array_foreach(checks, index, item)
 		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));
@@ -226,9 +242,5 @@ void ach::StopWatch::load() {
 	caption->setPosition((WIDTH - caption->getGlobalBounds().width) / 2, 10);
 	goal->setPosition((WIDTH - goal->getGlobalBounds().width) / 2, 30);
 
-	for (unsigned int i = 0; i < checkpoints.size(); i++)
-		if (i == 0)
-			checkpoints[i]->setClock(checkpoints[i]->best);
-		else
-			checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
+	reset();
 }

@@ -14,7 +14,9 @@ namespace ach {
 	struct Checkpoint {
 		sf::Text       *caption;
 		sf::Text       *timer;
+		sf::Text       *differ;
 		ach::TimeStamp  clock;
+		ach::TimeStamp  diff;
 
 		long            best;
 
@@ -26,6 +28,7 @@ namespace ach {
 		void render();
 
 		void setClock(long _clock);
+		void setBest(long _best);
 	};
 }
 

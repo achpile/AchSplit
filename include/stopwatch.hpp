@@ -21,6 +21,7 @@ namespace ach {
 		std::vector<ach::Checkpoint*> checkpoints;
 
 		long lastClock;
+		long offset;
 		int  current;
 		bool running;
 

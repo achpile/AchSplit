@@ -180,6 +180,8 @@ void ach::StopWatch::checkpoint() {
 			best.clock = timer->clock.clock;
 			updateBest();
 		}
+
+		save();
 	}
 }
 
@@ -264,6 +266,8 @@ void ach::StopWatch::load() {
 	json_t *checks;
 	json_t *item;
 
+	deleteList(checkpoints);
+
 	config = json_load_file("docs/test.json", 0, &error);
 	checks = json_object_get(config, "checkpoints");
 
@@ -281,4 +285,31 @@ void ach::StopWatch::load() {
 	goal->setPosition((WIDTH - goal->getGlobalBounds().width) / 2, 30);
 
 	reset();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * save
+
+***********************************************************************/
+void ach::StopWatch::save() {
+	size_t index;
+	json_error_t error;
+	json_t *config;
+	json_t *checks;
+	json_t *item;
+
+	config = json_load_file("docs/test.json", 0, &error);
+	checks = json_object_get(config, "checkpoints");
+
+	json_object_set_new_nocheck(config, "best", json_integer(best.clock));
+
+	json_array_foreach(checks, index, item)
+		json_object_set_new_nocheck(item, "best", json_integer(checkpoints[index]->best));
+
+	json_dump_file(config, "docs/test.json", JSON_INDENT(6));
+	json_decref(config);
+
 }

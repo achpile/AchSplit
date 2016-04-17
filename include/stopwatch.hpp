@@ -41,7 +41,9 @@ namespace ach {
 		long getSegmentTime(int index);
 		void updateBest();
 		void reset();
+
 		void load();
+		void save();
 
 		void processEvents();
 		void processEvent(sf::Event event);

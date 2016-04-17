@@ -20,7 +20,7 @@
 			<todo done="yes" collapse="no"><title>+/- best time for segment</title></todo>
 		</todo>
 		<todo done="yes" collapse="no"><title>Display best time</title></todo>
-		<todo done="no" collapse="no"><title>Save JSON</title></todo>
+		<todo done="yes" collapse="no"><title>Save JSON</title></todo>
 		<todo done="yes" collapse="no"><title>Store best segments</title></todo>
 		<todo done="yes" collapse="no"><title>Calculating PB</title></todo>
 		<todo done="yes" collapse="no"><title>Reset method</title></todo>

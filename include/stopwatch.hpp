@@ -15,6 +15,9 @@ namespace ach {
 		sf::Clock        *clock;
 		ach::Timer       *timer;
 
+		sf::Text         *caption;
+		sf::Text         *goal;
+
 		std::vector<ach::Checkpoint*> checkpoints;
 
 		long lastClock;
@@ -31,6 +34,7 @@ namespace ach {
 
 		void checkpoint();
 		void reset();
+		void load();
 
 		void processEvents();
 		void processEvent(sf::Event event);

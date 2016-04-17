@@ -15,28 +15,27 @@
      * constructor
 
 ***********************************************************************/
-ach::Checkpoint::Checkpoint(int index) {
+ach::Checkpoint::Checkpoint(int index, const char *label) {
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
 	caption->setCharacterSize(14);
-	caption->setColor(sf::Color::White);
-	caption->setPosition(10, 10 + index * 25);
+	caption->setColor(sf::Color::Blue);
+	caption->setPosition(10, 50 + index * 25);
+	caption->setString(label);
 
 	timer = new sf::Text();
 	timer->setFont(*resources->fonts.timer);
 	timer->setCharacterSize(16);
-	timer->setColor(sf::Color::Green);
+	timer->setColor(sf::Color::White);
 
 
 	char cap[32];
-	sprintf(cap, "Level %d", index);
-	caption->setString(cap);
 
-	clock.clock = 10000 * index;
+	clock.clock = 10000 * index + 5000;
 	clock.calc();
 	clock.sprint2(cap, sizeof(cap));
 	timer->setString(cap);
-	timer->setPosition(WIDTH - 7 * strlen(cap) - 10, 10 + index * 25);
+	timer->setPosition(WIDTH - 7 * strlen(cap) - 10, 50 + index * 25);
 }
 
 

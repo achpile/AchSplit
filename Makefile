@@ -25,6 +25,7 @@ LDFLAGS     = -static-libstdc++ \
               -lsfml-graphics   \
               -lsfml-window     \
               -lsfml-system     \
+              -ljansson         \
               -lm
 
 CFLAGS      = -Wall                 \

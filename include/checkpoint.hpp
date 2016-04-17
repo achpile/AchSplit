@@ -17,7 +17,7 @@ namespace ach {
 		ach::TimeStamp  clock;
 
 
-		 Checkpoint(int index);
+		 Checkpoint(int index, const char *label);
 		~Checkpoint();
 
 		void update();

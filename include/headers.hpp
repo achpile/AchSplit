@@ -20,6 +20,7 @@
 #include <vector>
 #include <string.h>
 #include <math.h>
+#include <jansson.h>
 
 
 #include "defines.hpp"

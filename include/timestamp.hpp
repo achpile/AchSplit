@@ -1,28 +1,29 @@
 /***********************************************************************
-     * File       : timer.hpp
+     * File       : timestamp.hpp
      * Created    : Apr 17, 2016
      * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 
 ***********************************************************************/
-#ifndef __TIMER
-#define __TIMER
+#ifndef __TIMESTAMP
+#define __TIMESTAMP
 
 
 namespace ach {
-	struct Timer {
-		sf::Text       *text;
-		ach::TimeStamp  clock;
+	struct TimeStamp {
+		long clock;
+
+		long usec;
+		long sec;
+		long min;
+		long hour;
 
 
-		 Timer();
-		~Timer();
+		 TimeStamp();
 
-		void update();
-		void render();
-		void updateText();
-		void init();
+		void calc();
+		void sprint(char *buf, size_t size);
 	};
 }
 

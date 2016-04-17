@@ -16,12 +16,12 @@
 
 ***********************************************************************/
 ach::Timer::Timer() {
-	init();
-
 	text = new sf::Text();
 	text->setFont(*resources->fonts.timer);
 	text->setCharacterSize(32);
 	text->setColor(sf::Color::Green);
+
+	clock.clock = -5000;
 }
 
 
@@ -43,9 +43,9 @@ ach::Timer::~Timer() {
 
 ***********************************************************************/
 void ach::Timer::update() {
-	clock += frameClock;
+	clock.clock += frameClock;
+	clock.calc();
 
-	calc();
 	updateText();
 	render();
 }
@@ -59,11 +59,10 @@ void ach::Timer::update() {
 ***********************************************************************/
 void ach::Timer::updateText() {
 	char caption[32];
-
-	snprintf(caption, sizeof(caption), "%ld:%02ld:%02ld.%03ld", hour, min, sec, usec);
+	clock.sprint(caption, sizeof(caption));
 
 	text->setString(caption);
-	text->setPosition(WIDTH - 170, HEIGHT - 45);
+	text->setPosition(WIDTH - text->getGlobalBounds().width - 10, HEIGHT - 45);
 }
 
 
@@ -75,31 +74,4 @@ void ach::Timer::updateText() {
 ***********************************************************************/
 void ach::Timer::render() {
 	app->draw(*text);
-}
-
-
-
-/***********************************************************************
-     * Timer
-     * init
-
-***********************************************************************/
-void ach::Timer::init() {
-	clock = 0;
-
-	calc();
-}
-
-
-
-/***********************************************************************
-     * Timer
-     * calc
-
-***********************************************************************/
-void ach::Timer::calc() {
-	usec = clock % 1000;
-	sec  = (clock % 60000) / 1000;
-	min  = (clock % 3600000) / 60000;
-	hour = clock / 3600000;
 }

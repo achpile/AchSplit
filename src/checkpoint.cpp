@@ -155,5 +155,5 @@ void ach::Checkpoint::setBest(long _best) {
 
 
 	differ->setString(cap);
-	differ->setPosition(WIDTH - 7 * strlen(cap) - 60, timer->getPosition().y);
+	differ->setPosition(WIDTH - 7 * strlen(cap) - 80, timer->getPosition().y);
 }

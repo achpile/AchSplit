@@ -46,7 +46,9 @@
 			<todo done="yes" collapse="no"><title>Playing sounds</title></todo>
 		</todo>
 	</todo>
-	<todo done="no" collapse="no"><title>1.0-rc2</title>
-		<todo done="no" collapse="no"><title>Fix 1.0-rc1 bugs</title></todo>
+	<todo done="yes" collapse="no"><title>1.0-rc2</title>
+		<todo done="yes" collapse="no"><title>Fix 1.0-rc1 bugs</title>
+			<todo done="yes" collapse="no"><title>Fix offset</title></todo>
+		</todo>
 	</todo>
 </todo>

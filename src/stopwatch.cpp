@@ -97,7 +97,9 @@ void ach::StopWatch::render() {
 	app->draw(*caption);
 	app->draw(*goal);
 	app->draw(*bestCaption);
-	app->draw(*bestText);
+
+	if (best.clock)
+		app->draw(*bestText);
 
 	for (unsigned int i = 0; i < checkpoints.size(); i++)
 		checkpoints[i]->update();
@@ -176,7 +178,7 @@ void ach::StopWatch::checkpoint() {
 	if (current == (int)checkpoints.size()) {
 		timer->active = false;
 
-		if (timer->clock.clock < best.clock) {
+		if (timer->clock.clock < best.clock || !best.clock) {
 			best.clock = timer->clock.clock;
 			updateBest();
 		}

@@ -1,5 +1,5 @@
 /***********************************************************************
-     * File       : stopwatch.cpp
+     * File       : timer.cpp
      * Created    : Apr 17, 2016
      * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
@@ -11,106 +11,95 @@
 
 
 /***********************************************************************
-     * StopWatch
+     * Timer
      * constructor
 
 ***********************************************************************/
-ach::StopWatch::StopWatch() {
-	clock     = new sf::Clock;
-//	settings  = new ach::Settings();
-	resources = new ach::Resources();
-	timer     = new ach::Timer();
+ach::Timer::Timer() {
+	init();
 
-	createWindow();
-
-	running   = true;
-	lastClock = clock->getElapsedTime().asMilliseconds();
+	text = new sf::Text();
+	text->setFont(*resources->fonts.timer);
+	text->setCharacterSize(32);
+	text->setColor(sf::Color::Green);
 }
 
 
 
 /***********************************************************************
-     * StopWatch
+     * Timer
      * destructor
 
 ***********************************************************************/
-ach::StopWatch::~StopWatch() {
-	delete clock;
-	//delete settings;
-	delete resources;
-	delete app;
+ach::Timer::~Timer() {
+	delete text;
 }
 
 
 
 /***********************************************************************
-     * StopWatch
+     * Timer
      * update
 
 ***********************************************************************/
-void ach::StopWatch::update() {
-	long currentClock = clock->getElapsedTime().asMilliseconds();
+void ach::Timer::update() {
+	clock += frameClock;
 
-	frameClock = (currentClock - lastClock);
-	lastClock = currentClock;
-
-	processEvents();
-
-	app->clear();
+	calc();
+	updateText();
 	render();
-	app->display();
 }
 
 
 
 /***********************************************************************
-     * StopWatch
+     * Timer
+     * updateText
+
+***********************************************************************/
+void ach::Timer::updateText() {
+	char caption[32];
+
+	snprintf(caption, sizeof(caption), "%ld:%02ld:%02ld.%03ld", hour, min, sec, usec);
+
+	text->setString(caption);
+	text->setPosition(WIDTH - 170, HEIGHT - 45);
+}
+
+
+
+/***********************************************************************
+     * Timer
      * render
 
 ***********************************************************************/
-void ach::StopWatch::render() {
-	timer->update();
+void ach::Timer::render() {
+	app->draw(*text);
 }
 
 
 
 /***********************************************************************
-     * StopWatch
-     * processEvents
+     * Timer
+     * init
 
 ***********************************************************************/
-void ach::StopWatch::processEvents() {
-	sf::Event event;
-	while (app->pollEvent(event)) processEvent(event);
+void ach::Timer::init() {
+	clock = 0;
 
-	if (!app->isOpen()) running = false;
+	calc();
 }
 
 
 
 /***********************************************************************
-     * StopWatch
-     * stop
+     * Timer
+     * calc
 
 ***********************************************************************/
-void ach::StopWatch::stop() {
-	running = false;
-}
-
-
-
-/***********************************************************************
-     * StopWatch
-     * processEvent
-
-***********************************************************************/
-void ach::StopWatch::processEvent(sf::Event event) {
-	switch(event.type) {
-		case sf::Event::Closed:
-			stop();
-			break;
-
-		default:
-			break;
-	}
+void ach::Timer::calc() {
+	usec = clock % 1000;
+	sec  = (clock % 60000) / 1000;
+	min  = (clock % 3600000) / 60000;
+	hour = clock / 3600000;
 }

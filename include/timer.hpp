@@ -1,33 +1,35 @@
 /***********************************************************************
-     * File       : stopwatch.hpp
+     * File       : timer.hpp
      * Created    : Apr 17, 2016
      * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 
 ***********************************************************************/
-#ifndef __STOPWATCH
-#define __STOPWATCH
+#ifndef __TIMER
+#define __TIMER
 
 
 namespace ach {
-	struct StopWatch {
-		sf::Clock        *clock;
-		ach::Timer       *timer;
+	struct Timer {
+		sf::Text *text;
 
-		long lastClock;
-		bool running;
+		long clock;
+
+		long usec;
+		long sec;
+		long min;
+		long hour;
 
 
-		 StopWatch();
-		~StopWatch();
+		 Timer();
+		~Timer();
 
 		void update();
 		void render();
-		void stop();
-
-		void processEvents();
-		void processEvent(sf::Event event);
+		void updateText();
+		void calc();
+		void init();
 	};
 }
 

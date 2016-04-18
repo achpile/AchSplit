@@ -49,6 +49,20 @@
 	<todo done="yes" collapse="no"><title>1.0-rc2</title>
 		<todo done="yes" collapse="no"><title>Fix 1.0-rc1 bugs</title>
 			<todo done="yes" collapse="no"><title>Fix offset</title></todo>
+			<todo done="no" collapse="no"><title>Resize window</title></todo>
+			<todo done="no" collapse="no"><title>Change caption</title></todo>
+			<todo done="no" collapse="no"><title>Change name</title></todo>
+		</todo>
+		<todo done="no" collapse="no"><title>Windows hotkeys</title>
+			<todo done="no" collapse="no"><title>Record</title></todo>
+			<todo done="no" collapse="no"><title>Reset</title></todo>
+		</todo>
+		<todo done="no" collapse="no"><title>File working</title>
+			<todo done="no" collapse="no"><title>Opening files</title></todo>
+			<todo done="no" collapse="no"><title>Storing filename</title></todo>
+		</todo>
+		<todo done="no" collapse="no"><title>Background in JSON</title>
+			<todo done="no" collapse="no"><title>Look for JSON folder for picture</title></todo>
 		</todo>
 	</todo>
 </todo>

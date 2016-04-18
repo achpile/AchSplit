@@ -57,6 +57,8 @@
 			<todo done="yes" collapse="no"><title>Storing filename</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>Window resizing</title>
+			<todo done="yes" collapse="no"><title>Settings support</title></todo>
+			<todo done="no" collapse="no"><title>Changing width and height</title></todo>
 			<todo done="no" collapse="no"><title>Changing visible count</title></todo>
 			<todo done="no" collapse="no"><title>Change BEST and TIMER positions</title></todo>
 			<todo done="no" collapse="no"><title>Change Checkpoint timers offsets</title></todo>

@@ -18,6 +18,7 @@
 ach::StopWatch::StopWatch(int argc, char **argv) {
 	clock     = new sf::Clock;
 	resources = new ach::Resources();
+	settings  = new ach::Settings();
 	timer     = new ach::Timer();
 
 	separator = new sf::RectangleShape(sf::Vector2f(WIDTH - 20, 1));
@@ -66,12 +67,15 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 
 ***********************************************************************/
 ach::StopWatch::~StopWatch() {
+	settings->setPosition(app->getPosition());
+
 	deleteList(checkpoints);
 
 	delete clock;
 	delete separator;
 	delete timer;
 	delete resources;
+	delete settings;
 	delete app;
 }
 

@@ -31,6 +31,7 @@
 
 #include "defines.hpp"
 #include "misc.hpp"
+#include "settings.hpp"
 #include "resources.hpp"
 #include "timestamp.hpp"
 #include "timer.hpp"

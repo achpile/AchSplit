@@ -1,5 +1,5 @@
 /***********************************************************************
-     * File       : container_resources.cpp
+     * File       : resources.cpp
      * Created    : Apr 17, 2016
      * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander

@@ -18,4 +18,6 @@ void createWindow() {
 	app = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT, 32),
 	                           CAPTION VERSION,
 	                           sf::Style::Close);
+
+	app->setPosition(settings->getPosition());
 }

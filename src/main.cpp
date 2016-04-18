@@ -17,6 +17,7 @@
 long                       frameClock;
 ach::StopWatch            *sw;
 ach::Resources            *resources;
+ach::Settings             *settings;
 sf::RenderWindow          *app;
 
 

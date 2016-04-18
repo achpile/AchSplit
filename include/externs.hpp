@@ -12,6 +12,7 @@
 extern long                       frameClock;
 extern ach::StopWatch            *sw;
 extern ach::Resources            *resources;
+extern ach::Settings             *settings;
 extern sf::RenderWindow          *app;
 
 #endif

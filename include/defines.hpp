@@ -20,11 +20,12 @@
 
 
 /***********************************************************************
-     * Window
+     * Misc
 
 ***********************************************************************/
-#define CAPTION "ASplit"
-#define VERSION " v1.0-rc2"
+#define CAPTION  "ASplit"
+#define VERSION  " v1.0-rc2"
+#define SETTINGS "docs/settings.json"
 
 #define WIDTH   250
 #define HEIGHT  500

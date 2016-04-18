@@ -14,7 +14,7 @@
      * UNIX
 
 ***********************************************************************/
-#ifdef __unix__
+#ifdef SFML_SYSTEM_LINUX
 static void signal_catcher(int signum) {
 	switch (signum) {
 		case SIGUSR1: sw->checkpoint(); break;
@@ -40,7 +40,7 @@ static void signals_unix() {
 
 ***********************************************************************/
 void signals() {
-#ifdef __unix__
+#ifdef SFML_SYSTEM_LINUX
 	signals_unix();
 #endif
 }

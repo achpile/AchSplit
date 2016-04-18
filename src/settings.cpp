@@ -80,11 +80,22 @@ int ach::Settings::getHeight() {
 
 /***********************************************************************
      * Settings
+     * getSeparatorY
+
+***********************************************************************/
+int ach::Settings::getSeparatorY() {
+	return 56 + 25 * (getVisibleCount() - 1);
+}
+
+
+
+/***********************************************************************
+     * Settings
      * getVisibleCount
 
 ***********************************************************************/
 int ach::Settings::getVisibleCount() {
-	return VISIBLE;
+	return (getHeight() - 125) / 25;
 }
 
 

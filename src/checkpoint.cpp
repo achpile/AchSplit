@@ -19,7 +19,7 @@ ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
 	best    = _best;
 	visible = false;
 
-	highlight = new sf::RectangleShape(sf::Vector2f(WIDTH - 10, 25));
+	highlight = new sf::RectangleShape(sf::Vector2f(settings->getWidth() - 10, 25));
 	highlight->setFillColor(sf::Color(50, 50, 50));
 
 	caption = new sf::Text();
@@ -47,7 +47,7 @@ ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
 	clock.calc();
 	clock.sprint2(cap, sizeof(cap));
 	timer->setString(cap);
-	timer->setPosition(WIDTH - 7 * strlen(cap) - 10, 60 + index * 25);
+	timer->setPosition(settings->getWidth() - 7 * strlen(cap) - 10, 60 + index * 25);
 }
 
 
@@ -107,7 +107,7 @@ void ach::Checkpoint::setClock(long _clock) {
 	clock.calc();
 	clock.sprint2(cap, sizeof(cap));
 	timer->setString(cap);
-	timer->setPosition(WIDTH - 7 * strlen(cap) - 10, timer->getPosition().y);
+	timer->setPosition(settings->getWidth() - 7 * strlen(cap) - 10, timer->getPosition().y);
 }
 
 
@@ -155,5 +155,19 @@ void ach::Checkpoint::setBest(long _best) {
 
 
 	differ->setString(cap);
-	differ->setPosition(WIDTH - 7 * strlen(cap) - 80, timer->getPosition().y);
+	differ->setPosition(settings->getWidth() - 7 * strlen(cap) - 90, timer->getPosition().y);
+}
+
+
+
+/***********************************************************************
+     * Checkpoint
+     * resize
+
+***********************************************************************/
+void ach::Checkpoint::resize() {
+	differ->setPosition(settings->getWidth() - 7 * differ->getString().getSize() - 90, differ->getPosition().y);
+	timer->setPosition (settings->getWidth() - 7 * timer->getString().getSize()  - 10, timer->getPosition().y );
+
+	highlight->setSize(sf::Vector2f(settings->getWidth() - 10, highlight->getSize().y));
 }

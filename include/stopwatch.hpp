@@ -38,6 +38,7 @@ namespace ach {
 		void update();
 		void render();
 		void stop();
+		void resize();
 
 		void checkpoint();
 		long getSegmentTime(int index);

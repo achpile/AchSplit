@@ -21,9 +21,8 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 	settings  = new ach::Settings();
 	timer     = new ach::Timer();
 
-	separator = new sf::RectangleShape(sf::Vector2f(WIDTH - 20, 1));
+	separator = new sf::RectangleShape();
 	separator->setFillColor(sf::Color::White);
-	separator->setPosition(10, HEIGHT - 93);
 
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
@@ -39,7 +38,6 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 	bestCaption->setFont(*resources->fonts.caption);
 	bestCaption->setCharacterSize(20);
 	bestCaption->setColor(sf::Color::White);
-	bestCaption->setPosition(10, HEIGHT - 65);
 	bestCaption->setString("Best time");
 
 	bestText = new sf::Text();
@@ -49,10 +47,10 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 
 	createWindow();
 
-	if (argc > 1)
-		load(argv[1]);
-	else
-		load("docs/test.json");
+	if (argc > 1) load(argv[1]);
+	else          load("docs/test.json");
+
+	resize();
 
 	current   = -1;
 	running   = true;
@@ -152,6 +150,33 @@ void ach::StopWatch::stop() {
 
 /***********************************************************************
      * StopWatch
+     * resize
+
+***********************************************************************/
+void ach::StopWatch::resize() {
+	settings->setWidth (app->getSize().x);
+	settings->setHeight(app->getSize().y);
+
+	app->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(app->getSize()))));
+
+	caption->setPosition((settings->getWidth() - caption->getGlobalBounds().width) / 2, 10);
+	goal->setPosition((settings->getWidth() - goal->getGlobalBounds().width) / 2, 30);
+	bestCaption->setPosition(10, settings->getHeight() - 65);
+	bestText->setPosition(settings->getWidth() - bestText->getGlobalBounds().width - 10, settings->getHeight() - 65);
+
+	separator->setSize(sf::Vector2f(settings->getWidth() - 20, 1));
+	separator->setPosition(10, settings->getSeparatorY());
+
+	for (unsigned int i = 0; i < checkpoints.size(); i++)
+		checkpoints[i]->resize();
+
+	updateCheckpoints();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
      * updateCheckpoints
 
 ***********************************************************************/
@@ -164,22 +189,22 @@ void ach::StopWatch::updateCheckpoints() {
 	for (unsigned int i = 0; i < checkpoints.size(); i++)
 		checkpoints[i]->visible = false;
 
-	if (checkpoints.size() <= VISIBLE) {
+	if ((int)checkpoints.size() <= settings->getVisibleCount()) {
 		from      = 0;
 		to        = checkpoints.size() - 1;
 		separated = false;
 	} else {
-		from      = current - 7;
+		from      = current - settings->getVisibleCount() / 2;
 		separated = true;
 
 		if (from < 0) {
 			from = 0;
-		} else if (from + VISIBLE >= (int)checkpoints.size()) {
-			from      = checkpoints.size() - VISIBLE;
+		} else if (from + settings->getVisibleCount() >= (int)checkpoints.size()) {
+			from      = checkpoints.size() - settings->getVisibleCount();
 			separated = false;
 		}
 
-		to = from + VISIBLE - 1;
+		to = from + settings->getVisibleCount() - 1;
 	}
 
 
@@ -200,6 +225,11 @@ void ach::StopWatch::processEvent(sf::Event event) {
 	switch(event.type) {
 		case sf::Event::Closed:
 			stop();
+			break;
+
+
+		case sf::Event::Resized:
+			resize();
 			break;
 
 
@@ -296,7 +326,7 @@ void ach::StopWatch::updateBest() {
 	best.sprint2(cap, sizeof(cap));
 
 	bestText->setString(cap);
-	bestText->setPosition(WIDTH - bestText->getGlobalBounds().width - 10, HEIGHT - 65);
+	bestText->setPosition(settings->getWidth() - bestText->getGlobalBounds().width - 10, settings->getHeight() - 65);
 }
 
 
@@ -342,9 +372,6 @@ void ach::StopWatch::load(const char *filename) {
 		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));
 
 	json_decref(config);
-
-	caption->setPosition((WIDTH - caption->getGlobalBounds().width) / 2, 10);
-	goal->setPosition((WIDTH - goal->getGlobalBounds().width) / 2, 30);
 
 	reset();
 }

@@ -24,6 +24,7 @@ namespace ach {
 		int getWidth();
 		int getHeight();
 		int getVisibleCount();
+		int getSeparatorY();
 		sf::Vector2i getPosition();
 
 		void setWidth(int value);

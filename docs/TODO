@@ -56,12 +56,12 @@
 			<todo done="yes" collapse="no"><title>Opening files as arguments</title></todo>
 			<todo done="yes" collapse="no"><title>Storing filename</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>Window resizing</title>
+		<todo done="yes" collapse="yes"><title>Window resizing</title>
 			<todo done="yes" collapse="no"><title>Settings support</title></todo>
-			<todo done="no" collapse="no"><title>Changing width and height</title></todo>
-			<todo done="no" collapse="no"><title>Changing visible count</title></todo>
-			<todo done="no" collapse="no"><title>Change BEST and TIMER positions</title></todo>
-			<todo done="no" collapse="no"><title>Change Checkpoint timers offsets</title></todo>
+			<todo done="yes" collapse="no"><title>Changing width and height</title></todo>
+			<todo done="yes" collapse="no"><title>Changing visible count</title></todo>
+			<todo done="yes" collapse="no"><title>Change BEST and TIMER positions</title></todo>
+			<todo done="yes" collapse="no"><title>Change Checkpoint timers offsets</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>ARCH</title>
 			<todo done="no" collapse="no"><title>Windows hotkeys</title>

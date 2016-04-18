@@ -30,6 +30,8 @@ namespace ach {
 		void update();
 		void render();
 
+		void resize();
+
 		void setClock(long _clock);
 		void setBest(long _best);
 		void setIndex(int index, bool _highlighted);

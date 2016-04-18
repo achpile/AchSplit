@@ -67,7 +67,7 @@ void ach::Timer::updateText() {
 	clock.sprint(caption, sizeof(caption));
 
 	text->setString(caption);
-	text->setPosition(WIDTH - text->getGlobalBounds().width - 10, HEIGHT - 45);
+	text->setPosition(settings->getWidth() - text->getGlobalBounds().width - 10, settings->getHeight() - 45);
 }
 
 

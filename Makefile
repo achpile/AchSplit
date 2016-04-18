@@ -1,15 +1,15 @@
 ########################################################################
 #                                                                       
-#               Main Makefile for STOPWATCH project                     
+#               Main Makefile for ASplit project                     
 #                                                                       
 ########################################################################
-PROJECT     = stopwatch
+PROJECT     = asplit
 INCLUDE_DIR = $(PWD)/include
 OBJS        = $(patsubst %.cpp,%.o,$(sort $(wildcard src/*.cpp)))
 
 CC          = @g++
 STRIP       = @strip
-MAKE        = @make -j1 --no-print-directory
+MAKE        = @make -j8 --no-print-directory
 ECHO        = @echo
 CLEAN       = @rm -f
 

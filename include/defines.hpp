@@ -23,6 +23,9 @@
      * Window
 
 ***********************************************************************/
+#define CAPTION "ASplit"
+#define VERSION " v1.0-rc2"
+
 #define WIDTH   250
 #define HEIGHT  500
 #define VISIBLE 15

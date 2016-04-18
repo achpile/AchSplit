@@ -2,7 +2,7 @@
 *.o
 
 # Compiled project
-stopwatch
+asplit
 
 # CMake
 CMakeCache.txt

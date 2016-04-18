@@ -23,6 +23,7 @@ namespace ach {
 		sf::Text         *bestText;
 
 		std::vector<ach::Checkpoint*> checkpoints;
+		char                          JSONfile[256];
 
 		long lastClock;
 		long offset;
@@ -31,7 +32,7 @@ namespace ach {
 		bool separated;
 
 
-		 StopWatch();
+		 StopWatch(int argc, char **argv);
 		~StopWatch();
 
 		void update();
@@ -39,14 +40,13 @@ namespace ach {
 		void stop();
 
 		void checkpoint();
-		long calculate(int index);
 		long getSegmentTime(int index);
 		void updateBest();
 		void updateCheckpoints();
 		void reset();
 
-		void load();
-		void save();
+		void load(const char *filename);
+		void save(const char *filename);
 
 		void processEvents();
 		void processEvent(sf::Event event);

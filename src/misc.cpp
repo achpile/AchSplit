@@ -16,6 +16,6 @@
 ***********************************************************************/
 void createWindow() {
 	app = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT, 32),
-	                           "Achpile StopWatch",
+	                           CAPTION VERSION,
 	                           sf::Style::Close);
 }

@@ -15,7 +15,7 @@
      * constructor
 
 ***********************************************************************/
-ach::StopWatch::StopWatch() {
+ach::StopWatch::StopWatch(int argc, char **argv) {
 	clock     = new sf::Clock;
 	resources = new ach::Resources();
 	timer     = new ach::Timer();
@@ -47,7 +47,11 @@ ach::StopWatch::StopWatch() {
 	bestText->setColor(sf::Color::White);
 
 	createWindow();
-	load();
+
+	if (argc > 1)
+		load(argv[1]);
+	else
+		load("docs/test.json");
 
 	current   = -1;
 	running   = true;
@@ -194,19 +198,18 @@ void ach::StopWatch::processEvent(sf::Event event) {
 			stop();
 			break;
 
+
 		case sf::Event::MouseButtonReleased:
-			if (event.mouseButton.button == sf::Mouse::Left)
-				checkpoint();
-			else if (event.mouseButton.button == sf::Mouse::Right)
-				reset();
+			if      (event.mouseButton.button == sf::Mouse::Left ) checkpoint();
+			else if (event.mouseButton.button == sf::Mouse::Right) reset();
 			break;
 
+
 		case sf::Event::KeyReleased:
-			if (event.key.code == sf::Keyboard::Space)
-				checkpoint();
-			else if (event.key.code == sf::Keyboard::R)
-				reset();
+			if      (event.key.code == sf::Keyboard::Space) checkpoint();
+			else if (event.key.code == sf::Keyboard::R)     reset();
 			break;
+
 
 		default:
 			break;
@@ -242,7 +245,7 @@ void ach::StopWatch::checkpoint() {
 			updateBest();
 		}
 
-		save();
+		save(JSONfile);
 	}
 
 	updateCheckpoints();
@@ -264,10 +267,8 @@ void ach::StopWatch::reset() {
 		if (best.clock) {
 			checkpoints[i]->setBest(checkpoints[i]->best);
 
-			if (i == 0)
-				checkpoints[i]->setClock(checkpoints[i]->best);
-			else
-				checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
+			if (i == 0) checkpoints[i]->setClock(checkpoints[i]->best);
+			else        checkpoints[i]->setClock(checkpoints[i]->best + checkpoints[i - 1]->clock.clock);
 		} else {
 			checkpoints[i]->setBest(0);
 			checkpoints[i]->setClock(0);
@@ -298,27 +299,12 @@ void ach::StopWatch::updateBest() {
 
 /***********************************************************************
      * StopWatch
-     * calculate
-
-***********************************************************************/
-long ach::StopWatch::calculate(int index) {
-	long st = getSegmentTime(index);
-
-	return (st - checkpoints[index]->best);
-}
-
-
-
-/***********************************************************************
-     * StopWatch
      * getSegmentTime
 
 ***********************************************************************/
 long ach::StopWatch::getSegmentTime(int index) {
-	if (index == 0)
-		return checkpoints[index]->clock.clock;
-	else
-		return checkpoints[index]->clock.clock - checkpoints[index - 1]->clock.clock;
+	if (index == 0) return checkpoints[index]->clock.clock;
+	else            return checkpoints[index]->clock.clock - checkpoints[index - 1]->clock.clock;
 }
 
 
@@ -328,7 +314,7 @@ long ach::StopWatch::getSegmentTime(int index) {
      * load
 
 ***********************************************************************/
-void ach::StopWatch::load() {
+void ach::StopWatch::load(const char *filename) {
 	size_t index;
 	json_error_t error;
 	json_t *config;
@@ -337,8 +323,10 @@ void ach::StopWatch::load() {
 
 	deleteList(checkpoints);
 
-	config = json_load_file("docs/test.json", 0, &error);
+	config = json_load_file(filename, 0, &error);
 	checks = json_object_get(config, "checkpoints");
+
+	strncpy(JSONfile, filename, 256);
 
 	caption->setString(json_string_value (json_object_get(config, "game"  )));
 	goal->setString   (json_string_value (json_object_get(config, "goal"  )));
@@ -364,14 +352,14 @@ void ach::StopWatch::load() {
      * save
 
 ***********************************************************************/
-void ach::StopWatch::save() {
+void ach::StopWatch::save(const char *filename) {
 	size_t index;
 	json_error_t error;
 	json_t *config;
 	json_t *checks;
 	json_t *item;
 
-	config = json_load_file("docs/test.json", 0, &error);
+	config = json_load_file(filename, 0, &error);
 	checks = json_object_get(config, "checkpoints");
 
 	json_object_set_new_nocheck(config, "best", json_integer(best.clock));
@@ -379,7 +367,7 @@ void ach::StopWatch::save() {
 	json_array_foreach(checks, index, item)
 		json_object_set_new_nocheck(item, "best", json_integer(checkpoints[index]->best));
 
-	json_dump_file(config, "docs/test.json", JSON_INDENT(6));
+	json_dump_file(config, filename, JSON_INDENT(6));
 	json_decref(config);
 
 }

@@ -25,8 +25,8 @@ sf::RenderWindow          *app;
      * Main function
 
 ***********************************************************************/
-int main() {
-	sw = new ach::StopWatch;
+int main(int argc, char **argv) {
+	sw = new ach::StopWatch(argc, argv);
 
 	signals();
 

@@ -47,15 +47,19 @@
 		</todo>
 	</todo>
 	<todo done="yes" collapse="no"><title>1.0-rc2</title>
-		<todo done="yes" collapse="no"><title>Fix 1.0-rc1 bugs</title>
+		<todo done="yes" collapse="yes"><title>Fix 1.0-rc1 bugs</title>
 			<todo done="yes" collapse="no"><title>Fix offset</title></todo>
-			<todo done="no" collapse="no"><title>Resize window</title></todo>
-			<todo done="no" collapse="no"><title>Change caption</title></todo>
-			<todo done="no" collapse="no"><title>Change name</title></todo>
+			<todo done="yes" collapse="no"><title>Change caption</title></todo>
+			<todo done="yes" collapse="no"><title>Change name</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>File working</title>
-			<todo done="no" collapse="no"><title>Opening files as arguments</title></todo>
-			<todo done="no" collapse="no"><title>Storing filename</title></todo>
+		<todo done="yes" collapse="yes"><title>File working</title>
+			<todo done="yes" collapse="no"><title>Opening files as arguments</title></todo>
+			<todo done="yes" collapse="no"><title>Storing filename</title></todo>
+		</todo>
+		<todo done="no" collapse="no"><title>Window resizing</title>
+			<todo done="no" collapse="no"><title>Changing visible count</title></todo>
+			<todo done="no" collapse="no"><title>Change BEST and TIMER positions</title></todo>
+			<todo done="no" collapse="no"><title>Change Checkpoint timers offsets</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>ARCH</title>
 			<todo done="no" collapse="no"><title>Windows hotkeys</title>

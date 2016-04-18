@@ -30,23 +30,23 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 	caption = new sf::Text();
 	caption->setFont(*resources->fonts.caption);
 	caption->setCharacterSize(14);
-	caption->setColor(sf::Color::Yellow);
+	caption->setFillColor(sf::Color::Yellow);
 
 	goal = new sf::Text();
 	goal->setFont(*resources->fonts.caption);
 	goal->setCharacterSize(12);
-	goal->setColor(sf::Color::White);
+	goal->setFillColor(sf::Color::White);
 
 	bestCaption = new sf::Text();
 	bestCaption->setFont(*resources->fonts.caption);
 	bestCaption->setCharacterSize(20);
-	bestCaption->setColor(sf::Color::White);
+	bestCaption->setFillColor(sf::Color::White);
 	bestCaption->setString("Best time");
 
 	bestText = new sf::Text();
 	bestText->setFont(*resources->fonts.timer);
 	bestText->setCharacterSize(20);
-	bestText->setColor(sf::Color::White);
+	bestText->setFillColor(sf::Color::White);
 
 	createWindow();
 

@@ -19,7 +19,7 @@ ach::Timer::Timer() {
 	text = new sf::Text();
 	text->setFont(*resources->fonts.timer);
 	text->setCharacterSize(32);
-	text->setColor(sf::Color::Green);
+	text->setFillColor(sf::Color::Green);
 
 	active      = false;
 	clock.clock = -5000;

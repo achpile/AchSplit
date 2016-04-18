@@ -22,6 +22,7 @@
 #include <string.h>
 #include <math.h>
 #include <jansson.h>
+#include <libgen.h>
 
 
 #ifdef __unix__

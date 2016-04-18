@@ -21,6 +21,9 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 	settings  = new ach::Settings();
 	timer     = new ach::Timer();
 
+	bgTex     = NULL;
+	bgSpr     = NULL;
+
 	separator = new sf::RectangleShape();
 	separator->setFillColor(sf::Color::White);
 
@@ -105,6 +108,9 @@ void ach::StopWatch::update() {
 
 ***********************************************************************/
 void ach::StopWatch::render() {
+	if (bgSpr)
+		app->draw(*bgSpr);
+
 	app->draw(*caption);
 	app->draw(*goal);
 	app->draw(*bestCaption);
@@ -166,6 +172,9 @@ void ach::StopWatch::resize() {
 
 	separator->setSize(sf::Vector2f(settings->getWidth() - 20, 1));
 	separator->setPosition(10, settings->getSeparatorY());
+
+	if (bgSpr)
+		bgSpr->setTextureRect(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(app->getSize())));
 
 	for (unsigned int i = 0; i < checkpoints.size(); i++)
 		checkpoints[i]->resize();
@@ -345,6 +354,52 @@ long ach::StopWatch::getSegmentTime(int index) {
 
 /***********************************************************************
      * StopWatch
+     * loadBG
+
+***********************************************************************/
+void ach::StopWatch::loadBG(const char *filename, const char *JSON) {
+	char bgFile[256];
+	char cwd[256];
+
+	if (bgTex) {
+		delete bgTex;
+		bgTex = NULL;
+	}
+
+	if (bgSpr) {
+		delete bgSpr;
+		bgSpr = NULL;
+	}
+
+	if (!filename)
+		return;
+
+	if (access(filename, F_OK) != -1) {
+		strncpy(bgFile, filename, sizeof(bgFile));
+		goto load;
+	};
+
+	strncpy(cwd, JSON, sizeof(cwd));
+	snprintf(bgFile, sizeof(bgFile), "%s/%s", dirname(cwd), filename);
+	if (access(bgFile, F_OK) != -1)
+		goto load;
+
+	return;
+
+load:
+	bgTex = new sf::Texture();
+	bgTex->loadFromFile(bgFile);
+	bgTex->setRepeated(true);
+	bgTex->setSmooth(true);
+
+	bgSpr = new sf::Sprite();
+	bgSpr->setTexture(*bgTex);
+}
+
+
+
+/***********************************************************************
+     * StopWatch
      * load
 
 ***********************************************************************/
@@ -370,6 +425,8 @@ void ach::StopWatch::load(const char *filename) {
 
 	json_array_foreach(checks, index, item)
 		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));
+
+	loadBG(json_string_value(json_object_get(config, "background")), filename);
 
 	json_decref(config);
 

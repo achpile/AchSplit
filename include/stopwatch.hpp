@@ -22,6 +22,9 @@ namespace ach {
 		sf::Text         *bestCaption;
 		sf::Text         *bestText;
 
+		sf::Texture      *bgTex;
+		sf::Sprite       *bgSpr;
+
 		std::vector<ach::Checkpoint*> checkpoints;
 		char                          JSONfile[256];
 
@@ -39,6 +42,8 @@ namespace ach {
 		void render();
 		void stop();
 		void resize();
+
+		void loadBG(const char *filename, const char *JSON);
 
 		void checkpoint();
 		long getSegmentTime(int index);

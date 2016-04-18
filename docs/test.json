@@ -3,6 +3,7 @@
 	"goal":"Test my speedrun tool",
 	"offset": -5000,
 	"beep": true,
+	"background": "test.jpg",
 	"checkpoints": [
 		{
 			"name":"Level 1"

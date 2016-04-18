@@ -63,6 +63,9 @@
 			<todo done="yes" collapse="no"><title>Change BEST and TIMER positions</title></todo>
 			<todo done="yes" collapse="no"><title>Change Checkpoint timers offsets</title></todo>
 		</todo>
+		<todo done="yes" collapse="yes"><title>Background in JSON</title>
+			<todo done="yes" collapse="no"><title>Look for JSON folder for picture</title></todo>
+		</todo>
 		<todo done="no" collapse="no"><title>ARCH</title>
 			<todo done="no" collapse="no"><title>Windows hotkeys</title>
 				<todo done="no" collapse="no"><title>Record</title></todo>
@@ -71,9 +74,6 @@
 			<todo done="no" collapse="no"><title>Handling more events</title>
 				<todo done="no" collapse="no"><title>Drag&amp;Drop files</title></todo>
 			</todo>
-		</todo>
-		<todo done="no" collapse="no"><title>Background in JSON</title>
-			<todo done="no" collapse="no"><title>Look for JSON folder for picture</title></todo>
 		</todo>
 	</todo>
 </todo>

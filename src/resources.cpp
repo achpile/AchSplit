@@ -16,11 +16,11 @@
 
 ***********************************************************************/
 ach::Resources::Resources() {
-	loadFont(&fonts.timer  , "fonts/digits.ttf");
-	loadFont(&fonts.caption, "fonts/ethnocentric.ttf");
+	loadFont(&fonts.timer  , "data/fonts/digits.ttf");
+	loadFont(&fonts.caption, "data/fonts/ethnocentric.ttf");
 
-	loadSound(&sfx.beepBuf1, &sfx.beep1, "sfx/beep1.wav");
-	loadSound(&sfx.beepBuf2, &sfx.beep2, "sfx/beep2.wav");
+	loadSound(&sfx.beepBuf1, &sfx.beep1, "data/sfx/beep1.wav");
+	loadSound(&sfx.beepBuf2, &sfx.beep2, "data/sfx/beep2.wav");
 }
 
 

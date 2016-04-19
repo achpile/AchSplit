@@ -24,7 +24,7 @@
 
 ***********************************************************************/
 #define CAPTION  "ASplit"
-#define VERSION  " v1.0-rc3"
-#define SETTINGS "docs/settings.json"
+#define VERSION  " v1.0"
+#define SETTINGS "data/settings.json"
 
 #endif

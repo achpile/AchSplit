@@ -55,7 +55,7 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 
 
 	if (argc > 1) load(argv[1]);
-	else          load("docs/test.json");
+	else          load("data/games/test/test.json");
 
 
 	if (hkConfigured) {

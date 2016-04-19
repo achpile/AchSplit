@@ -95,5 +95,11 @@
 			<todo done="no" collapse="no"><title>timer.cpp</title></todo>
 			<todo done="no" collapse="no"><title>timestamp.cpp</title></todo>
 		</todo>
+		<todo done="no" collapse="no"><title>Files</title>
+			<todo done="yes" collapse="no"><title>Move shit to data dir</title></todo>
+			<todo done="no" collapse="no"><title>README.eng</title></todo>
+			<todo done="no" collapse="no"><title>README.rus</title></todo>
+			<todo done="no" collapse="no"><title>LICENSE</title></todo>
+		</todo>
 	</todo>
 </todo>

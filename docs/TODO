@@ -67,15 +67,12 @@
 			<todo done="yes" collapse="no"><title>Look for JSON folder for picture</title></todo>
 		</todo>
 	</todo>
-	<todo done="yes" collapse="yes"><title>1.0-rc3</title>
-		<todo done="yes" collapse="yes"><title>ARCH</title>
-			<todo done="yes" collapse="yes"><title>Windows hotkeys</title>
-				<todo done="yes" collapse="no"><title>Record</title></todo>
-				<todo done="yes" collapse="no"><title>Reset</title></todo>
-			</todo>
-			<todo done="yes" collapse="yes"><title>Handling more events</title>
-				<todo done="yes" collapse="no"><title>Drag&amp;Drop files</title></todo>
-			</todo>
+	<todo done="yes" collapse="no"><title>1.0-rc3</title>
+		<todo done="no" collapse="no"><title>Hotkeys</title>
+			<todo done="no" collapse="no"><title>Class</title></todo>
+			<todo done="no" collapse="no"><title>Update</title></todo>
+			<todo done="no" collapse="no"><title>Process</title></todo>
 		</todo>
+		<todo done="no" collapse="no"><title>Bind hotkeys at startup</title></todo>
 	</todo>
 </todo>

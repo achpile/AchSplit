@@ -32,7 +32,6 @@
 #include "timestamp.hpp"
 #include "timer.hpp"
 #include "checkpoint.hpp"
-#include "arch.hpp"
 #include "stopwatch.hpp"
 #include "externs.hpp"
 

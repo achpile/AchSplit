@@ -16,61 +16,34 @@
 
 ***********************************************************************/
 ach::StopWatch::StopWatch(int argc, char **argv) {
-	clock     = new sf::Clock;
-	resources = new ach::Resources();
-	settings  = new ach::Settings();
-	timer     = new ach::Timer();
+	clock        = new sf::Clock;
+	resources    = new ach::Resources();
+	settings     = new ach::Settings();
+	timer        = new ach::Timer();
 
-	bgTex     = NULL;
-	bgSpr     = NULL;
+	bgTex        = NULL;
+	bgSpr        = NULL;
 
-	separator = new sf::RectangleShape();
+	current      = -1;
+	running      = true;
+	lastClock    = clock->getElapsedTime().asMilliseconds();
+	hkCurrent    = 0;
+
+	separator    = new sf::RectangleShape();
 	separator->setFillColor(sf::Color::White);
 
-	caption = new sf::Text();
-	caption->setFont(*resources->fonts.caption);
-	caption->setCharacterSize(14);
-	caption->setFillColor(sf::Color::Yellow);
-
-	goal = new sf::Text();
-	goal->setFont(*resources->fonts.caption);
-	goal->setCharacterSize(12);
-	goal->setFillColor(sf::Color::White);
-
-	bestCaption = new sf::Text();
-	bestCaption->setFont(*resources->fonts.caption);
-	bestCaption->setCharacterSize(20);
-	bestCaption->setFillColor(sf::Color::White);
-	bestCaption->setString("Best time");
-
-	bestText = new sf::Text();
-	bestText->setFont(*resources->fonts.timer);
-	bestText->setCharacterSize(20);
-	bestText->setFillColor(sf::Color::White);
+	createText(&caption    , resources->fonts.caption, 14, sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+	createText(&goal       , resources->fonts.caption, 12, sf::Vector2f(0.0f, 0.0f), sf::Color::White);
+	createText(&bestCaption, resources->fonts.caption, 20, sf::Vector2f(0.0f, 0.0f), sf::Color::White, "Best time");
+	createText(&bestText   , resources->fonts.timer  , 20, sf::Vector2f(0.0f, 0.0f), sf::Color::White);
 
 	createWindow();
-
-	hkConfigured    = checkHotkeys();
-	hkCurrent       = 0;
-
 
 	if (argc > 1) load(argv[1]);
 	else          load("data/games/test/test.json");
 
-
-	if (hkConfigured) {
-		hotkeyCheck.key = settings->getKeyCheckpoint();
-		hotkeyReset.key = settings->getKeyReset();
-	} else {
-		updateConfig();
-	}
-
-
+	checkHotkeys();
 	resize();
-
-	current   = -1;
-	running   = true;
-	lastClock = clock->getElapsedTime().asMilliseconds();
 }
 
 
@@ -82,8 +55,11 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 ***********************************************************************/
 ach::StopWatch::~StopWatch() {
 	settings->setPosition(app->getPosition());
-
 	deleteList(checkpoints);
+
+	if (bgTex) delete bgTex;
+	if (bgSpr) delete bgSpr;
+
 
 	delete clock;
 	delete separator;
@@ -109,66 +85,11 @@ void ach::StopWatch::update() {
 	processEvents();
 
 	if (hkConfigured) updateStopwatch();
-	else              configStopwatch();
+	else              updateConfig();
 
 	app->clear();
 	render();
 	app->display();
-}
-
-
-
-/***********************************************************************
-     * StopWatch
-     * updateConfig
-
-***********************************************************************/
-void ach::StopWatch::updateConfig() {
-	caption->setString("CONFIG");
-
-	if (hkCurrent == 0) goal->setString("Press key for 'checkpoint' action");
-	if (hkCurrent == 1) goal->setString("Press key for 'reset' action");
-
-	if (hkCurrent == 2) {
-		hkConfigured = true;
-		load(JSONfile);
-	}
-
-	resize();
-}
-
-
-
-/***********************************************************************
-     * StopWatch
-     * configHotkey
-
-***********************************************************************/
-void ach::StopWatch::configHotkey(sf::Keyboard::Key key) {
-	if (hkCurrent == 0) {
-		hotkeyCheck.key = key;
-		settings->setKeyCheckpoint(key);
-	} else if (hkCurrent == 1) {
-		hotkeyReset.key = key;
-		settings->setKeyReset(key);
-	}
-
-	hkCurrent++;
-	updateConfig();
-}
-
-
-
-/***********************************************************************
-     * StopWatch
-     * configStopwatch
-
-***********************************************************************/
-void ach::StopWatch::configStopwatch() {
-	sf::Keyboard::Key i = kbd.update();
-
-	if (i != sf::Keyboard::Unknown)
-		configHotkey(i);
 }
 
 
@@ -186,51 +107,41 @@ void ach::StopWatch::updateStopwatch() {
 
 /***********************************************************************
      * StopWatch
-     * render
+     * configStopwatch
 
 ***********************************************************************/
-void ach::StopWatch::render() {
-	if (hkConfigured) renderStopwatch();
-	else              renderConfig();
+void ach::StopWatch::updateConfig() {
+	sf::Keyboard::Key i = kbd.update();
+
+	if (i != sf::Keyboard::Unknown)
+		configHotkey(i);
 }
 
 
 
 /***********************************************************************
      * StopWatch
-     * renderStopwatch
+     * render
 
 ***********************************************************************/
-void ach::StopWatch::renderStopwatch() {
-	if (bgSpr)
-		app->draw(*bgSpr);
+void ach::StopWatch::render() {
+	if (bgSpr) app->draw(*bgSpr);
 
 	app->draw(*caption);
 	app->draw(*goal);
+
+	if (!hkConfigured)
+		return;
+
 	app->draw(*bestCaption);
 
-	if (separated)
-		app->draw(*separator);
-
-	if (best.clock)
-		app->draw(*bestText);
+	if (separated)  app->draw(*separator);
+	if (best.clock) app->draw(*bestText);
 
 	for (unsigned int i = 0; i < checkpoints.size(); i++)
 		checkpoints[i]->update();
 
 	timer->update();
-}
-
-
-
-/***********************************************************************
-     * StopWatch
-     * renderConfig
-
-***********************************************************************/
-void ach::StopWatch::renderConfig() {
-	app->draw(*caption);
-	app->draw(*goal);
 }
 
 
@@ -252,9 +163,17 @@ void ach::StopWatch::processHotkeys() {
      * checkHotkeys
 
 ***********************************************************************/
-bool ach::StopWatch::checkHotkeys() {
-	return (settings->getKeyCheckpoint() != sf::Keyboard::Unknown) &&
-	       (settings->getKeyReset()      != sf::Keyboard::Unknown);
+void ach::StopWatch::checkHotkeys() {
+	hkConfigured = (settings->getKeyCheckpoint() != sf::Keyboard::Unknown) &&
+	               (settings->getKeyReset()      != sf::Keyboard::Unknown);
+
+	if (hkConfigured) {
+		hotkeyCheck.key = settings->getKeyCheckpoint();
+		hotkeyReset.key = settings->getKeyReset();
+	} else {
+		caption->setString("Config");
+		updateConfigScreen();
+	}
 }
 
 
@@ -269,6 +188,39 @@ void ach::StopWatch::processEvents() {
 	while (app->pollEvent(event)) processEvent(event);
 
 	if (!app->isOpen()) running = false;
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * processEvent
+
+***********************************************************************/
+void ach::StopWatch::processEvent(sf::Event event) {
+	switch(event.type) {
+		case sf::Event::Closed:
+			stop();
+			break;
+
+
+		case sf::Event::Resized:
+			resize();
+			break;
+
+
+		case sf::Event::MouseButtonReleased:
+			if (!hkConfigured)
+				break;
+
+			if      (event.mouseButton.button == sf::Mouse::Left ) checkpoint();
+			else if (event.mouseButton.button == sf::Mouse::Right) reset();
+			break;
+
+
+		default:
+			break;
+	}
 }
 
 
@@ -315,6 +267,46 @@ void ach::StopWatch::resize() {
 
 /***********************************************************************
      * StopWatch
+     * updateConfigScreen
+
+***********************************************************************/
+void ach::StopWatch::updateConfigScreen() {
+	switch (hkCurrent) {
+		case 0: goal->setString("Press key for 'checkpoint' action"); break;
+		case 1: goal->setString("Press key for 'reset' action"     ); break;
+
+		default:
+			hkConfigured = true;
+			load(JSONfile);
+	}
+
+	resize();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * configHotkey
+
+***********************************************************************/
+void ach::StopWatch::configHotkey(sf::Keyboard::Key key) {
+	if (hkCurrent == 0) {
+		hotkeyCheck.key = key;
+		settings->setKeyCheckpoint(key);
+	} else if (hkCurrent == 1) {
+		hotkeyReset.key = key;
+		settings->setKeyReset(key);
+	}
+
+	hkCurrent++;
+	updateConfigScreen();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
      * updateCheckpoints
 
 ***********************************************************************/
@@ -323,66 +315,19 @@ void ach::StopWatch::updateCheckpoints() {
 	int from;
 	int to;
 
-
 	for (unsigned int i = 0; i < checkpoints.size(); i++)
 		checkpoints[i]->visible = false;
 
-	if ((int)checkpoints.size() <= settings->getVisibleCount()) {
-		from      = 0;
-		to        = checkpoints.size() - 1;
-		separated = false;
-	} else {
-		from      = current - settings->getVisibleCount() / 2;
-		separated = true;
 
-		if (from < 0) {
-			from = 0;
-		} else if (from + settings->getVisibleCount() >= (int)checkpoints.size()) {
-			from      = checkpoints.size() - settings->getVisibleCount();
-			separated = false;
-		}
-
-		to = from + settings->getVisibleCount() - 1;
-	}
+	from      = bound(current - settings->getVisibleCount() / 2 + 1, 0, checkpoints.size() - settings->getVisibleCount());
+	to        = min(checkpoints.size(), from + settings->getVisibleCount());
+	separated = (to != (int)checkpoints.size());
 
 
-	for (int i = from; i < to; i++)
+	for (int i = from; i < to - 1; i++)
 		checkpoints[i]->setIndex(index++, i == current);
 
 	checkpoints.back()->setIndex(index, current == (int)checkpoints.size() - 1);
-}
-
-
-
-/***********************************************************************
-     * StopWatch
-     * processEvent
-
-***********************************************************************/
-void ach::StopWatch::processEvent(sf::Event event) {
-	switch(event.type) {
-		case sf::Event::Closed:
-			stop();
-			break;
-
-
-		case sf::Event::Resized:
-			resize();
-			break;
-
-
-		case sf::Event::MouseButtonReleased:
-			if (!hkConfigured)
-				break;
-
-			if      (event.mouseButton.button == sf::Mouse::Left ) checkpoint();
-			else if (event.mouseButton.button == sf::Mouse::Right) reset();
-			break;
-
-
-		default:
-			break;
-	}
 }
 
 

@@ -50,10 +50,7 @@ namespace ach {
 		void resize();
 
 		void updateStopwatch();
-		void configStopwatch();
-
-		void renderStopwatch();
-		void renderConfig();
+		void updateConfig();
 
 		void loadBG(const char *filename, const char *JSON);
 
@@ -67,9 +64,9 @@ namespace ach {
 		void save(const char *filename);
 
 		void configHotkey(sf::Keyboard::Key key);
-		void updateConfig();
+		void updateConfigScreen();
 		void processHotkeys();
-		bool checkHotkeys();
+		void checkHotkeys();
 
 		void processEvents();
 		void processEvent(sf::Event event);

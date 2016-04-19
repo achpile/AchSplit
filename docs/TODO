@@ -83,7 +83,7 @@
 		<todo done="yes" collapse="no"><title>Bind hotkeys at startup</title></todo>
 	</todo>
 	<todo done="no" collapse="no"><title>1.0</title>
-		<todo done="no" collapse="no"><title>Clean this SHIT</title>
+		<todo done="yes" collapse="yes"><title>Clean this SHIT</title>
 			<todo done="yes" collapse="no"><title>checkpoint.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>hotkey.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>keyboard.cpp</title></todo>
@@ -91,7 +91,7 @@
 			<todo done="yes" collapse="no"><title>misc.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>resources.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>settings.cpp</title></todo>
-			<todo done="no" collapse="no"><title>stopwatch.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>stopwatch.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>timer.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>timestamp.cpp</title></todo>
 		</todo>

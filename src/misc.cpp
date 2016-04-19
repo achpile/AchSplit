@@ -36,3 +36,27 @@ void createText(sf::Text **text, sf::Font *font, int size, sf::Vector2f pos, sf:
 	(*text)->setFillColor(color);
 	(*text)->setString(caption);
 }
+
+
+
+/***********************************************************************
+     * min
+
+***********************************************************************/
+int min(int a, int b) {
+	return (a < b) ? a : b;
+}
+
+
+
+/***********************************************************************
+     * bound
+
+***********************************************************************/
+int bound(int x, int a, int b) {
+	if (b < a) return a;
+	if (x < a) return a;
+	if (x > b) return b;
+
+	return x;
+}

@@ -50,6 +50,9 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 
 	createWindow();
 
+	hotkeyCheck.key = sf::Keyboard::Numpad0;
+	hotkeyReset.key = sf::Keyboard::Period;
+
 	if (argc > 1) load(argv[1]);
 	else          load("docs/test.json");
 
@@ -94,6 +97,7 @@ void ach::StopWatch::update() {
 	lastClock = currentClock;
 
 	processEvents();
+	processHotkeys();
 
 	app->clear();
 	render();
@@ -125,6 +129,18 @@ void ach::StopWatch::render() {
 		checkpoints[i]->update();
 
 	timer->update();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * processHotkeys
+
+***********************************************************************/
+void ach::StopWatch::processHotkeys() {
+	if (hotkeyCheck.update()) checkpoint();
+	if (hotkeyReset.update()) reset();
 }
 
 

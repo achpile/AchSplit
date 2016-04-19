@@ -1,30 +1,39 @@
 /***********************************************************************
-     * File       : defines.hpp
-     * Created    : Apr 17, 2016
+     * File       : hotkey.cpp
+     * Created    : Apr 19, 2016
      * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 
 ***********************************************************************/
-#ifndef __DEFINES
-#define __DEFINES
+#include "headers.hpp"
 
 
 
 /***********************************************************************
-     * Function macros
+     * HotKey
+     * constructor
 
 ***********************************************************************/
-#define deleteList(list)       for (; !(list).empty(); delete (list).back(), (list).pop_back())
+ach::HotKey::HotKey() {
+	key   = sf::Keyboard::Unknown;
+	state = false;
+}
 
 
 
 /***********************************************************************
-     * Misc
+     * HotKey
+     * update
 
 ***********************************************************************/
-#define CAPTION  "ASplit"
-#define VERSION  " v1.0-rc2"
-#define SETTINGS "docs/settings.json"
+bool ach::HotKey::update() {
+	bool newState = sf::Keyboard::isKeyPressed(key);
 
-#endif
+	if (newState != state) {
+		state = newState;
+		return !state;
+	}
+
+	return false;
+}

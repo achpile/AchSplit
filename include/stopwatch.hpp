@@ -17,6 +17,9 @@ namespace ach {
 		ach::Timer         *timer;
 		ach::TimeStamp      best;
 
+		ach::HotKey         hotkeyCheck;
+		ach::HotKey         hotkeyReset;
+
 		sf::Text         *caption;
 		sf::Text         *goal;
 		sf::Text         *bestCaption;
@@ -54,6 +57,7 @@ namespace ach {
 		void load(const char *filename);
 		void save(const char *filename);
 
+		void processHotkeys();
 		void processEvents();
 		void processEvent(sf::Event event);
 	};

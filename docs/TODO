@@ -68,11 +68,12 @@
 		</todo>
 	</todo>
 	<todo done="yes" collapse="no"><title>1.0-rc3</title>
-		<todo done="no" collapse="no"><title>Hotkeys</title>
-			<todo done="no" collapse="no"><title>Class</title></todo>
-			<todo done="no" collapse="no"><title>Update</title></todo>
-			<todo done="no" collapse="no"><title>Process</title></todo>
+		<todo done="yes" collapse="yes"><title>Hotkeys</title>
+			<todo done="yes" collapse="no"><title>Class</title></todo>
+			<todo done="yes" collapse="no"><title>Update</title></todo>
+			<todo done="yes" collapse="no"><title>Process</title></todo>
 		</todo>
+		<todo done="no" collapse="no"><title>Check if hotkeys is not configured</title></todo>
 		<todo done="no" collapse="no"><title>Bind hotkeys at startup</title></todo>
 	</todo>
 </todo>

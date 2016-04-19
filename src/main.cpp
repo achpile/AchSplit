@@ -27,6 +27,8 @@ sf::RenderWindow          *app;
 
 ***********************************************************************/
 int main(int argc, char **argv) {
+	chdir(dirname(argv[0]));
+
 	sw = new ach::StopWatch(argc, argv);
 
 	while(sw->running) sw->update();

@@ -2,7 +2,7 @@
 *.o
 
 # Compiled project
-asplit
+AchSplit
 
 # CMake
 CMakeCache.txt

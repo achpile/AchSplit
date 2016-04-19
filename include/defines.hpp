@@ -23,7 +23,7 @@
      * Misc
 
 ***********************************************************************/
-#define CAPTION  "ASplit"
+#define CAPTION  "AchSplit"
 #define VERSION  " v1.0"
 #define SETTINGS "data/settings.json"
 

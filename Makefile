@@ -1,9 +1,9 @@
 ########################################################################
 #                                                                       
-#               Main Makefile for ASplit project                     
+#               Main Makefile for AchSplit project                      
 #                                                                       
 ########################################################################
-PROJECT     = asplit
+PROJECT     = AchSplit
 INCLUDE_DIR = $(PWD)/include
 OBJS        = $(patsubst %.cpp,%.o,$(sort $(wildcard src/*.cpp)))
 

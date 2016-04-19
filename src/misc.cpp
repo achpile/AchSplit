@@ -20,3 +20,19 @@ void createWindow() {
 
 	app->setPosition(settings->getPosition());
 }
+
+
+
+/***********************************************************************
+     * createText
+
+***********************************************************************/
+void createText(sf::Text **text, sf::Font *font, int size, sf::Vector2f pos, sf::Color color, const char *caption) {
+	(*text) = new sf::Text;
+
+	(*text)->setFont(*font);
+	(*text)->setCharacterSize(size);
+	(*text)->setPosition(pos);
+	(*text)->setFillColor(color);
+	(*text)->setString(caption);
+}

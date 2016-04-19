@@ -457,11 +457,9 @@ void ach::StopWatch::reset() {
 
 ***********************************************************************/
 void ach::StopWatch::updateBest() {
-	char cap[32];
 	best.calc();
-	best.sprint2(cap, sizeof(cap));
 
-	bestText->setString(cap);
+	bestText->setString(best.sprint2());
 	bestText->setPosition(settings->getWidth() - bestText->getGlobalBounds().width - 10, settings->getHeight() - 65);
 }
 
@@ -551,7 +549,7 @@ void ach::StopWatch::load(const char *filename) {
 	timer->beep =      json_is_true      (json_object_get(config, "beep"  ));
 
 	json_array_foreach(checks, index, item)
-		checkpoints.push_back(new ach::Checkpoint(index, json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));
+		checkpoints.push_back(new ach::Checkpoint(json_integer_value(json_object_get(item, "best")), json_string_value(json_object_get(item, "name"))));
 
 	loadBG(json_string_value(json_object_get(config, "background")), filename);
 

@@ -25,6 +25,30 @@ ach::TimeStamp::TimeStamp() {
 
 /***********************************************************************
      * TimeStamp
+     * update
+
+***********************************************************************/
+void ach::TimeStamp::update() {
+	clock += frameClock;
+	calc();
+}
+
+
+
+/***********************************************************************
+     * TimeStamp
+     * setClock
+
+***********************************************************************/
+void ach::TimeStamp::setClock(long _clock) {
+	clock = _clock;
+	calc();
+}
+
+
+
+/***********************************************************************
+     * TimeStamp
      * calc
 
 ***********************************************************************/
@@ -44,13 +68,18 @@ void ach::TimeStamp::calc() {
      * sprint
 
 ***********************************************************************/
-void ach::TimeStamp::sprint(char *buf, size_t size) {
+sf::String ach::TimeStamp::sprint() {
+	char   buf[32];
+	size_t size = sizeof(buf);
+
 	snprintf(buf, size, "%s%ld:%02ld:%02ld.%03ld",
 	                    (clock < 0) ? "-" : "",
 	                    hour,
 	                    min,
 	                    sec,
 	                    usec);
+
+	return sf::String(buf);
 }
 
 
@@ -60,7 +89,10 @@ void ach::TimeStamp::sprint(char *buf, size_t size) {
      * sprint2
 
 ***********************************************************************/
-void ach::TimeStamp::sprint2(char *buf, size_t size, const char *positive) {
+sf::String ach::TimeStamp::sprint2(const char *positive) {
+	char   buf[32];
+	size_t size = sizeof(buf);
+
 	if (hour)
 		snprintf(buf, size, "%s%ld:%02ld:%02ld.%ld",
 		                    (clock < 0) ? "-" : positive,
@@ -79,4 +111,6 @@ void ach::TimeStamp::sprint2(char *buf, size_t size, const char *positive) {
 		                    (clock < 0) ? "-" : positive,
 		                    sec,
 		                    usec / 100);
+
+	return sf::String(buf);
 }

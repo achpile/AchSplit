@@ -16,6 +16,7 @@ namespace ach {
 		sf::Text           *timer;
 		sf::Text           *differ;
 		sf::RectangleShape *highlight;
+
 		ach::TimeStamp      clock;
 		ach::TimeStamp      diff;
 
@@ -24,7 +25,7 @@ namespace ach {
 		bool                highlighted;
 
 
-		 Checkpoint(int index, long _best, const char *label);
+		 Checkpoint(long _best, const char *label);
 		~Checkpoint();
 
 		void update();

@@ -84,16 +84,16 @@
 	</todo>
 	<todo done="no" collapse="no"><title>1.0</title>
 		<todo done="no" collapse="no"><title>Clean this SHIT</title>
-			<todo done="no" collapse="no"><title>checkpoint.cpp</title></todo>
-			<todo done="no" collapse="no"><title>hotkey.cpp</title></todo>
-			<todo done="no" collapse="no"><title>keyboard.cpp</title></todo>
-			<todo done="no" collapse="no"><title>main.cpp</title></todo>
-			<todo done="no" collapse="no"><title>misc.cpp</title></todo>
-			<todo done="no" collapse="no"><title>resources.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>checkpoint.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>hotkey.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>keyboard.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>main.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>misc.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>resources.cpp</title></todo>
 			<todo done="no" collapse="no"><title>settings.cpp</title></todo>
 			<todo done="no" collapse="no"><title>stopwatch.cpp</title></todo>
 			<todo done="no" collapse="no"><title>timer.cpp</title></todo>
-			<todo done="no" collapse="no"><title>timestamp.cpp</title></todo>
+			<todo done="yes" collapse="no"><title>timestamp.cpp</title></todo>
 		</todo>
 		<todo done="no" collapse="no"><title>Files</title>
 			<todo done="yes" collapse="no"><title>Move shit to data dir</title></todo>

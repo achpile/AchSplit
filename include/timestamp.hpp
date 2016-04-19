@@ -23,8 +23,11 @@ namespace ach {
 		 TimeStamp();
 
 		void calc();
-		void sprint(char *buf, size_t size);
-		void sprint2(char *buf, size_t size, const char *positive = "");
+		void update();
+		void setClock(long _clock);
+
+		sf::String sprint();
+		sf::String sprint2(const char *positive = "");
 	};
 }
 

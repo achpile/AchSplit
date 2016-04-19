@@ -22,7 +22,6 @@ ach::Timer::Timer() {
 	text->setFillColor(sf::Color::Green);
 
 	active      = false;
-	clock.clock = -5000;
 }
 
 
@@ -46,10 +45,8 @@ ach::Timer::~Timer() {
 void ach::Timer::update() {
 	if (active) {
 		checkBeep();
-		clock.clock += frameClock;
+		clock.update();
 	}
-
-	clock.calc();
 
 	updateText();
 	render();
@@ -63,10 +60,8 @@ void ach::Timer::update() {
 
 ***********************************************************************/
 void ach::Timer::updateText() {
-	char caption[32];
-	clock.sprint(caption, sizeof(caption));
 
-	text->setString(caption);
+	text->setString(clock.sprint());
 	text->setPosition(settings->getWidth() - text->getGlobalBounds().width - 10, settings->getHeight() - 45);
 }
 

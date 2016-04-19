@@ -15,39 +15,17 @@
      * constructor
 
 ***********************************************************************/
-ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
-	best    = _best;
-	visible = false;
+ach::Checkpoint::Checkpoint(long _best, const char *label) {
+	best       = _best;
+	visible    = false;
+	diff.clock = 0;
 
 	highlight = new sf::RectangleShape(sf::Vector2f(settings->getWidth() - 10, 25));
 	highlight->setFillColor(sf::Color(50, 50, 50));
 
-	caption = new sf::Text();
-	caption->setFont(*resources->fonts.caption);
-	caption->setCharacterSize(14);
-	caption->setFillColor(sf::Color(128, 128, 255));
-	caption->setPosition(10, 60 + index * 25);
-	caption->setString(label);
-
-	differ = new sf::Text();
-	differ->setFont(*resources->fonts.timer);
-	differ->setCharacterSize(16);
-	differ->setPosition(10, 60 + index * 25);
-
-	timer = new sf::Text();
-	timer->setFont(*resources->fonts.timer);
-	timer->setCharacterSize(16);
-	timer->setFillColor(sf::Color::White);
-
-
-	char cap[32];
-
-	diff.clock = 0;
-	clock.clock = 10000 * index + 5000;
-	clock.calc();
-	clock.sprint2(cap, sizeof(cap));
-	timer->setString(cap);
-	timer->setPosition(settings->getWidth() - 7 * strlen(cap) - 10, 60 + index * 25);
+	createText(&caption, resources->fonts.caption, 14, sf::Vector2f(10, 0), sf::Color(128, 128, 255), label);
+	createText(&differ , resources->fonts.timer  , 16, sf::Vector2f(10, 0));
+	createText(&timer  , resources->fonts.timer  , 16, sf::Vector2f(10, 0));
 }
 
 
@@ -60,6 +38,8 @@ ach::Checkpoint::Checkpoint(int index, long _best, const char *label) {
 ach::Checkpoint::~Checkpoint() {
 	delete caption;
 	delete timer;
+	delete differ;
+	delete highlight;
 }
 
 
@@ -101,13 +81,10 @@ void ach::Checkpoint::render() {
 
 ***********************************************************************/
 void ach::Checkpoint::setClock(long _clock) {
-	char cap[32];
+	clock.setClock(_clock);
+	timer->setString(clock.sprint2());
 
-	clock.clock = _clock;
-	clock.calc();
-	clock.sprint2(cap, sizeof(cap));
-	timer->setString(cap);
-	timer->setPosition(settings->getWidth() - 7 * strlen(cap) - 10, timer->getPosition().y);
+	resize();
 }
 
 
@@ -137,14 +114,8 @@ void ach::Checkpoint::setIndex(int index, bool _highlighted) {
 
 ***********************************************************************/
 void ach::Checkpoint::setBest(long _best) {
-	char cap[32];
-
 	if (best && _best)
-		diff.clock = _best - best;
-
-	diff.calc();
-	diff.sprint2(cap, sizeof(cap), "+");
-
+		diff.setClock(_best - best);
 
 	if (best > _best || !best) {
 		best = _best;
@@ -154,8 +125,8 @@ void ach::Checkpoint::setBest(long _best) {
 	}
 
 
-	differ->setString(cap);
-	differ->setPosition(settings->getWidth() - 7 * strlen(cap) - 90, timer->getPosition().y);
+	differ->setString(diff.sprint2("+"));
+	resize();
 }
 
 

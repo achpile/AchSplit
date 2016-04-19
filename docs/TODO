@@ -82,7 +82,7 @@
 		</todo>
 		<todo done="yes" collapse="no"><title>Bind hotkeys at startup</title></todo>
 	</todo>
-	<todo done="yes" collapse="no"><title>1.0</title>
+	<todo done="yes" collapse="yes"><title>1.0</title>
 		<todo done="yes" collapse="yes"><title>Clean this SHIT</title>
 			<todo done="yes" collapse="no"><title>checkpoint.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>hotkey.cpp</title></todo>
@@ -95,13 +95,13 @@
 			<todo done="yes" collapse="no"><title>timer.cpp</title></todo>
 			<todo done="yes" collapse="no"><title>timestamp.cpp</title></todo>
 		</todo>
-		<todo done="yes" collapse="no"><title>Files</title>
+		<todo done="yes" collapse="yes"><title>Files</title>
 			<todo done="yes" collapse="no"><title>Move shit to data dir</title></todo>
 			<todo done="yes" collapse="no"><title>README.eng</title></todo>
 			<todo done="yes" collapse="no"><title>README.rus</title></todo>
 			<todo done="yes" collapse="no"><title>LICENSE</title></todo>
 			<todo done="yes" collapse="no"><title>COPYING</title></todo>
-			<todo done="no" collapse="no"><title>Windows icon</title></todo>
+			<todo done="yes" collapse="no"><title>Windows icon</title></todo>
 		</todo>
 	</todo>
 </todo>

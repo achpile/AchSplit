@@ -11,9 +11,11 @@ FILE ( GLOB SRC "src/*.cpp" )
 
 IF ( WIN32 )
 
+        SET ( CMAKE_RESOURCE   "docs/as.o" )
         SET ( CMAKE_CXX_FLAGS  "-DSFML_STATIC -s" )
         SET ( CMAKE_EXE_LINKER_FLAGS  "-mwindows -static-libgcc -static-libstdc++ -static -Wl,-Bstatic" )
         SET ( CMAKE_LINK_LIBS sfml-audio-s sfml-graphics-s sfml-window-s sfml-system-s winmm opengl32 gdi32 freetype glew jpeg opengl32 openal32 pthread FLAC vorbisfile vorbisenc vorbis ogg m jansson )
+        ADD_CUSTOM_COMMAND ( OUTPUT docs/as.o COMMAND windres.exe -Idocs -idocs/as.rc -o docs/as.o )
 
 ELSEIF ( UNIX )
 
@@ -25,5 +27,5 @@ ELSEIF ( UNIX )
 ENDIF ( )
 
 
-ADD_EXECUTABLE ( AchSplit ${SRC} )
+ADD_EXECUTABLE ( AchSplit ${SRC} ${CMAKE_RESOURCE} )
 TARGET_LINK_LIBRARIES ( AchSplit  ${CMAKE_LINK_LIBS} )

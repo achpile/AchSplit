@@ -50,6 +50,7 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 
 	createWindow();
 
+	hkConfigured    = checkHotkeys();
 	hotkeyCheck.key = sf::Keyboard::Numpad0;
 	hotkeyReset.key = sf::Keyboard::Period;
 
@@ -141,6 +142,18 @@ void ach::StopWatch::render() {
 void ach::StopWatch::processHotkeys() {
 	if (hotkeyCheck.update()) checkpoint();
 	if (hotkeyReset.update()) reset();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * checkHotkeys
+
+***********************************************************************/
+bool ach::StopWatch::checkHotkeys() {
+	return (settings->getKeyCheckpoint() != sf::Keyboard::Unknown) &&
+	       (settings->getKeyReset()      != sf::Keyboard::Unknown);
 }
 
 

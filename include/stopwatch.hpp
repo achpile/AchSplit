@@ -36,6 +36,7 @@ namespace ach {
 		int  current;
 		bool running;
 		bool separated;
+		bool hkConfigured;
 
 
 		 StopWatch(int argc, char **argv);
@@ -58,6 +59,8 @@ namespace ach {
 		void save(const char *filename);
 
 		void processHotkeys();
+		bool checkHotkeys();
+
 		void processEvents();
 		void processEvent(sf::Event event);
 	};

@@ -114,6 +114,34 @@ sf::Vector2i ach::Settings::getPosition() {
 
 /***********************************************************************
      * Settings
+     * getKeyCheckpoint
+
+***********************************************************************/
+sf::Keyboard::Key ach::Settings::getKeyCheckpoint() {
+	if (!json_object_get(config, "hk_checkpoint"))
+		return sf::Keyboard::Unknown;
+
+	return (sf::Keyboard::Key)json_integer_value(json_object_get(config, "hk_checkpoint"));
+}
+
+
+
+/***********************************************************************
+     * Settings
+     * getKeyReset
+
+***********************************************************************/
+sf::Keyboard::Key ach::Settings::getKeyReset() {
+	if (!json_object_get(config, "hk_reset"))
+		return sf::Keyboard::Unknown;
+
+	return (sf::Keyboard::Key)json_integer_value(json_object_get(config, "hk_reset"));
+}
+
+
+
+/***********************************************************************
+     * Settings
      * setWidth
 
 ***********************************************************************/
@@ -142,4 +170,26 @@ void ach::Settings::setHeight(int value) {
 void ach::Settings::setPosition(sf::Vector2i value) {
 	json_object_set_new_nocheck(config, "x", json_integer(value.x));
 	json_object_set_new_nocheck(config, "y", json_integer(value.y));
+}
+
+
+
+/***********************************************************************
+     * Settings
+     * setKeyCheckpoint
+
+***********************************************************************/
+void ach::Settings::setKeyCheckpoint(sf::Keyboard::Key key) {
+	json_object_set_new_nocheck(config, "hk_checkpoint", json_integer(key));
+}
+
+
+
+/***********************************************************************
+     * Settings
+     * setKeyReset
+
+***********************************************************************/
+void ach::Settings::setKeyReset(sf::Keyboard::Key key) {
+	json_object_set_new_nocheck(config, "hk_reset", json_integer(key));
 }

@@ -51,11 +51,20 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 	createWindow();
 
 	hkConfigured    = checkHotkeys();
-	hotkeyCheck.key = sf::Keyboard::Numpad0;
-	hotkeyReset.key = sf::Keyboard::Period;
+	hkCurrent       = 0;
+
 
 	if (argc > 1) load(argv[1]);
 	else          load("docs/test.json");
+
+
+	if (hkConfigured) {
+		hotkeyCheck.key = settings->getKeyCheckpoint();
+		hotkeyReset.key = settings->getKeyReset();
+	} else {
+		updateConfig();
+	}
+
 
 	resize();
 
@@ -98,7 +107,9 @@ void ach::StopWatch::update() {
 	lastClock = currentClock;
 
 	processEvents();
-	processHotkeys();
+
+	if (hkConfigured) updateStopwatch();
+	else              configStopwatch();
 
 	app->clear();
 	render();
@@ -109,10 +120,64 @@ void ach::StopWatch::update() {
 
 /***********************************************************************
      * StopWatch
+     * configStopwatch
+
+***********************************************************************/
+void ach::StopWatch::updateConfig() {
+	caption->setString("CONFIG");
+
+	if (hkCurrent == 0) goal->setString("Press key for 'checkpoint' action");
+	if (hkCurrent == 1) goal->setString("Press key for 'reset' action");
+
+	if (hkCurrent == 2) {
+		hkConfigured = true;
+		load(JSONfile);
+	}
+
+	resize();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * configStopwatch
+
+***********************************************************************/
+void ach::StopWatch::configStopwatch() {
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * updateStopwatch
+
+***********************************************************************/
+void ach::StopWatch::updateStopwatch() {
+	processHotkeys();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
      * render
 
 ***********************************************************************/
 void ach::StopWatch::render() {
+	if (hkConfigured) renderStopwatch();
+	else              renderConfig();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * renderStopwatch
+
+***********************************************************************/
+void ach::StopWatch::renderStopwatch() {
 	if (bgSpr)
 		app->draw(*bgSpr);
 
@@ -130,6 +195,18 @@ void ach::StopWatch::render() {
 		checkpoints[i]->update();
 
 	timer->update();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
+     * renderConfig
+
+***********************************************************************/
+void ach::StopWatch::renderConfig() {
+	app->draw(*caption);
+	app->draw(*goal);
 }
 
 
@@ -272,14 +349,11 @@ void ach::StopWatch::processEvent(sf::Event event) {
 
 
 		case sf::Event::MouseButtonReleased:
+			if (!hkConfigured)
+				break;
+
 			if      (event.mouseButton.button == sf::Mouse::Left ) checkpoint();
 			else if (event.mouseButton.button == sf::Mouse::Right) reset();
-			break;
-
-
-		case sf::Event::KeyReleased:
-			if      (event.key.code == sf::Keyboard::Space) checkpoint();
-			else if (event.key.code == sf::Keyboard::R)     reset();
 			break;
 
 

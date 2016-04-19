@@ -37,6 +37,7 @@ namespace ach {
 		bool running;
 		bool separated;
 		bool hkConfigured;
+		int  hkCurrent;
 
 
 		 StopWatch(int argc, char **argv);
@@ -46,6 +47,12 @@ namespace ach {
 		void render();
 		void stop();
 		void resize();
+
+		void updateStopwatch();
+		void configStopwatch();
+
+		void renderStopwatch();
+		void renderConfig();
 
 		void loadBG(const char *filename, const char *JSON);
 
@@ -58,6 +65,8 @@ namespace ach {
 		void load(const char *filename);
 		void save(const char *filename);
 
+		void configHotkey(sf::Keyboard::Key key);
+		void updateConfig();
 		void processHotkeys();
 		bool checkHotkeys();
 

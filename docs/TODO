@@ -74,7 +74,12 @@
 			<todo done="yes" collapse="no"><title>Process</title></todo>
 		</todo>
 		<todo done="yes" collapse="no"><title>Check if hotkeys is not configured</title></todo>
-		<todo done="no" collapse="no"><title>Configuring</title></todo>
+		<todo done="no" collapse="no"><title>Configuring</title>
+			<todo done="yes" collapse="no"><title>Config screen</title></todo>
+			<todo done="no" collapse="no"><title>Getting pressed key</title></todo>
+			<todo done="no" collapse="no"><title>Storing pressed key</title></todo>
+			<todo done="no" collapse="no"><title>Move on</title></todo>
+		</todo>
 		<todo done="no" collapse="no"><title>Bind hotkeys at startup</title></todo>
 	</todo>
 	<todo done="no" collapse="yes"><title>1.0</title>

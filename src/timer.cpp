@@ -16,12 +16,9 @@
 
 ***********************************************************************/
 ach::Timer::Timer() {
-	text = new sf::Text();
-	text->setFont(*resources->fonts.timer);
-	text->setCharacterSize(32);
-	text->setFillColor(sf::Color::Green);
-
 	active      = false;
+
+	createText(&text, resources->fonts.timer, 32, sf::Vector2f(0,0), sf::Color::Green);
 }
 
 
@@ -60,7 +57,6 @@ void ach::Timer::update() {
 
 ***********************************************************************/
 void ach::Timer::updateText() {
-
 	text->setString(clock.sprint());
 	text->setPosition(settings->getWidth() - text->getGlobalBounds().width - 10, settings->getHeight() - 45);
 }

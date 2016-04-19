@@ -32,6 +32,7 @@ namespace ach {
 		void setWidth(int value);
 		void setHeight(int value);
 		void setPosition(sf::Vector2i value);
+		void setSize(sf::Vector2u value);
 		void setKeyCheckpoint(sf::Keyboard::Key key);
 		void setKeyReset(sf::Keyboard::Key key);
 	};

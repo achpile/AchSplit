@@ -290,8 +290,7 @@ void ach::StopWatch::stop() {
 
 ***********************************************************************/
 void ach::StopWatch::resize() {
-	settings->setWidth (app->getSize().x);
-	settings->setHeight(app->getSize().y);
+	settings->setSize(app->getSize());
 
 	app->setView(sf::View(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(app->getSize()))));
 

@@ -176,6 +176,18 @@ void ach::Settings::setPosition(sf::Vector2i value) {
 
 /***********************************************************************
      * Settings
+     * setSize
+
+***********************************************************************/
+void ach::Settings::setSize(sf::Vector2u value) {
+	json_object_set_new_nocheck(config, "width" , json_integer(value.x));
+	json_object_set_new_nocheck(config, "height", json_integer(value.y));
+}
+
+
+
+/***********************************************************************
+     * Settings
      * setKeyCheckpoint
 
 ***********************************************************************/

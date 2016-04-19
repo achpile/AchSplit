@@ -29,8 +29,6 @@ sf::RenderWindow          *app;
 int main(int argc, char **argv) {
 	sw = new ach::StopWatch(argc, argv);
 
-	signals();
-
 	while(sw->running) sw->update();
 	delete sw;
 

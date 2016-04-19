@@ -49,6 +49,7 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 	bestText->setFillColor(sf::Color::White);
 
 	createWindow();
+	archInit();
 
 	if (argc > 1) load(argv[1]);
 	else          load("docs/test.json");
@@ -69,6 +70,7 @@ ach::StopWatch::StopWatch(int argc, char **argv) {
 ***********************************************************************/
 ach::StopWatch::~StopWatch() {
 	settings->setPosition(app->getPosition());
+	archCleanUp();
 
 	deleteList(checkpoints);
 
@@ -251,6 +253,11 @@ void ach::StopWatch::processEvent(sf::Event event) {
 		case sf::Event::KeyReleased:
 			if      (event.key.code == sf::Keyboard::Space) checkpoint();
 			else if (event.key.code == sf::Keyboard::R)     reset();
+			break;
+
+
+		case sf::Event::OSSpecific:
+			archEvent(event);
 			break;
 
 

@@ -27,4 +27,7 @@
 #define VERSION  " v1.0-rc2"
 #define SETTINGS "docs/settings.json"
 
+#define HOTKEY_ID_CHECK 1
+#define HOTKEY_ID_RESET 2
+
 #endif

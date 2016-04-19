@@ -10,6 +10,8 @@
 #define __ARCH
 
 
-void signals();
+void archInit();
+void archCleanUp();
+void archEvent(sf::Event event);
 
 #endif

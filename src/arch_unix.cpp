@@ -1,20 +1,24 @@
 /***********************************************************************
-     * File       : arch.cpp
+     * File       : arch_linux.cpp
      * Created    : Apr 17, 2016
      * Copyright  : (C) 2016 Achpile
      * Author     : Fedosov Alexander
      * Email      : achpile@gmail.com
 
+************************************************************************
+     * LINUX
+
 ***********************************************************************/
 #include "headers.hpp"
+#ifdef SFML_SYSTEM_LINUX
+#include <signal.h>
 
 
 
 /***********************************************************************
-     * UNIX
+     * signal_catcher
 
 ***********************************************************************/
-#ifdef SFML_SYSTEM_LINUX
 static void signal_catcher(int signum) {
 	switch (signum) {
 		case SIGUSR1: sw->checkpoint(); break;
@@ -22,7 +26,13 @@ static void signal_catcher(int signum) {
 	}
 }
 
-static void signals_unix() {
+
+
+/***********************************************************************
+     * archInit
+
+***********************************************************************/
+void archInit() {
 	struct sigaction act;
 	memset(&act, 0, sizeof(act));
 
@@ -31,16 +41,23 @@ static void signals_unix() {
 	sigaction(SIGUSR1, &act, NULL);
 	sigaction(SIGUSR2, &act, NULL);
 }
-#endif
 
 
 
 /***********************************************************************
-     * signals
+     * archCleanUp
 
 ***********************************************************************/
-void signals() {
-#ifdef SFML_SYSTEM_LINUX
-	signals_unix();
-#endif
+void archCleanUp() {
 }
+
+
+
+/***********************************************************************
+     * archEvent
+
+***********************************************************************/
+void archEvent(sf::Event) {
+}
+
+#endif

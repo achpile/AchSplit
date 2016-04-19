@@ -295,6 +295,9 @@ void ach::StopWatch::configHotkey(sf::Keyboard::Key key) {
 		hotkeyCheck.key = key;
 		settings->setKeyCheckpoint(key);
 	} else if (hkCurrent == 1) {
+		if (hotkeyCheck.key == key)
+			return;
+
 		hotkeyReset.key = key;
 		settings->setKeyReset(key);
 	}
@@ -373,7 +376,8 @@ void ach::StopWatch::checkpoint() {
 
 ***********************************************************************/
 void ach::StopWatch::reset() {
-	timer->clock.clock = offset;
+	timer->clock.setClock(offset);
+
 	timer->active      = false;
 	current            = -1;
 

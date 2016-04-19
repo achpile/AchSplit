@@ -120,7 +120,7 @@ void ach::StopWatch::update() {
 
 /***********************************************************************
      * StopWatch
-     * configStopwatch
+     * updateConfig
 
 ***********************************************************************/
 void ach::StopWatch::updateConfig() {
@@ -141,10 +141,34 @@ void ach::StopWatch::updateConfig() {
 
 /***********************************************************************
      * StopWatch
+     * configHotkey
+
+***********************************************************************/
+void ach::StopWatch::configHotkey(sf::Keyboard::Key key) {
+	if (hkCurrent == 0) {
+		hotkeyCheck.key = key;
+		settings->setKeyCheckpoint(key);
+	} else if (hkCurrent == 1) {
+		hotkeyReset.key = key;
+		settings->setKeyReset(key);
+	}
+
+	hkCurrent++;
+	updateConfig();
+}
+
+
+
+/***********************************************************************
+     * StopWatch
      * configStopwatch
 
 ***********************************************************************/
 void ach::StopWatch::configStopwatch() {
+	sf::Keyboard::Key i = kbd.update();
+
+	if (i != sf::Keyboard::Unknown)
+		configHotkey(i);
 }
 
 

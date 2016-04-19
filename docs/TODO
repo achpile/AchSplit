@@ -67,25 +67,26 @@
 			<todo done="yes" collapse="no"><title>Look for JSON folder for picture</title></todo>
 		</todo>
 	</todo>
-	<todo done="yes" collapse="no"><title>1.0-rc3</title>
+	<todo done="yes" collapse="yes"><title>1.0-rc3</title>
 		<todo done="yes" collapse="yes"><title>Hotkeys</title>
 			<todo done="yes" collapse="no"><title>Class</title></todo>
 			<todo done="yes" collapse="no"><title>Update</title></todo>
 			<todo done="yes" collapse="no"><title>Process</title></todo>
 		</todo>
 		<todo done="yes" collapse="no"><title>Check if hotkeys is not configured</title></todo>
-		<todo done="no" collapse="no"><title>Configuring</title>
+		<todo done="yes" collapse="yes"><title>Configuring</title>
 			<todo done="yes" collapse="no"><title>Config screen</title></todo>
-			<todo done="no" collapse="no"><title>Getting pressed key</title></todo>
-			<todo done="no" collapse="no"><title>Storing pressed key</title></todo>
-			<todo done="no" collapse="no"><title>Move on</title></todo>
+			<todo done="yes" collapse="no"><title>Getting pressed key</title></todo>
+			<todo done="yes" collapse="no"><title>Storing pressed key</title></todo>
+			<todo done="yes" collapse="no"><title>Move on</title></todo>
 		</todo>
-		<todo done="no" collapse="no"><title>Bind hotkeys at startup</title></todo>
+		<todo done="yes" collapse="no"><title>Bind hotkeys at startup</title></todo>
 	</todo>
-	<todo done="no" collapse="yes"><title>1.0</title>
-		<todo done="no" collapse="yes"><title>Clean this SHIT</title>
+	<todo done="no" collapse="no"><title>1.0</title>
+		<todo done="no" collapse="no"><title>Clean this SHIT</title>
 			<todo done="no" collapse="no"><title>checkpoint.cpp</title></todo>
 			<todo done="no" collapse="no"><title>hotkey.cpp</title></todo>
+			<todo done="no" collapse="no"><title>keyboard.cpp</title></todo>
 			<todo done="no" collapse="no"><title>main.cpp</title></todo>
 			<todo done="no" collapse="no"><title>misc.cpp</title></todo>
 			<todo done="no" collapse="no"><title>resources.cpp</title></todo>

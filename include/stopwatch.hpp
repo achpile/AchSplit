@@ -17,6 +17,7 @@ namespace ach {
 		ach::Timer         *timer;
 		ach::TimeStamp      best;
 
+		ach::Keyboard       kbd;
 		ach::HotKey         hotkeyCheck;
 		ach::HotKey         hotkeyReset;
 

@@ -32,6 +32,7 @@
 #include "timestamp.hpp"
 #include "timer.hpp"
 #include "checkpoint.hpp"
+#include "keyboard.hpp"
 #include "hotkey.hpp"
 #include "stopwatch.hpp"
 #include "externs.hpp"

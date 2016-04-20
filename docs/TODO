@@ -104,4 +104,7 @@
 			<todo done="yes" collapse="no"><title>Windows icon</title></todo>
 		</todo>
 	</todo>
+	<todo done="no" collapse="no"><title>1.1-rc1</title>
+		<todo done="no" collapse="no"><title>Checkpoint icons support</title></todo>
+	</todo>
 </todo>
